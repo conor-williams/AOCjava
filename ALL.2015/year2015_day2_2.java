@@ -10,7 +10,7 @@ import java.util.Vector;
 import java.util.regex.Pattern;
 import java.util.regex.Matcher;
 
-class year2015_day1_2 {
+class year2015_day2_2 {
 	public static void main(String [] args) {
 		System.out.println("		2015 Day2.2");
 		Vector<String> blah = new Vector<>();
