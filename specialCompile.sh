@@ -11,11 +11,15 @@ while [ $year != 2025 ];  do
 		if [ -d $curdir/$year/day$day ]; then
 			cd $curdir/$year/day$day
 			if [ ! -f year${year}_day$day.class ] ; then
-				$JAVAC  -Xmx3g year${year}_day$day.java 
+				if [ -f year${year}_day$day.java ]; then
+					$JAVAC year${year}_day$day.java 
+				fi
 			fi
 			if [ $day != 25 ]; then
 				if [ ! -f year${year}_day${day}_2.class ]; then
-					$JAVAC  -Xmx3g year${year}_day${day}_2.java
+					if [ -f $JAVAC year${year}_day${day}_2.java ]; then
+						$JAVAC year${year}_day${day}_2.java
+					fi
 				fi
 			fi
 		fi
