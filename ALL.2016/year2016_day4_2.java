@@ -25,7 +25,7 @@ import java.util.stream.*;
 // /java -Xmx2g year2019_day3.java *i1.txt
 
 
-class year2016_day4 {
+class year2016_day4_2 {
 	public static int [][] keypad = {{1, 2, 3}, {4, 5, 6}, {7, 8, 9}};
 	public static void main(String [] args) {
 		out.println("		2016 Day4.2");
