@@ -3,6 +3,7 @@
 o green button Code -> Download Zip
 o unzip AOCjava-main.zip 
 o unzip is a cygwin package
+o set the <b>JAVA paths</b> at the top of FIRST_JAVA.sh
 o sh FIRST_JAVA.sh
 o these work with my inputfiles -- java code may need to be adjusted slightly for your input
 o note: a lot of java coding ahead...
