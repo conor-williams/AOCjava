@@ -162,7 +162,7 @@ class year2016_day1_2 {
 	}
 }
 /*
-public class Tuple<int, int > {
+class Tuple<int, int > {
 	public final int first;
 	public final int second;
 
@@ -189,7 +189,7 @@ public class Tuple<int, int > {
 
 }
 */
-public class Tuple<X,Y > {
+class Tuple<X,Y > {
 	public final X first;
 	public final Y second;
 
