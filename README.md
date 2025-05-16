@@ -5,6 +5,7 @@ o unzip AOCjava-main.zip
 o unzip is a cygwin package
 o sh FIRST_JAVA.sh
 o these work with my inputfiles -- java code may need to be adjusted slightly for your input
+o note: a lot of java coding ahead...
 	
 </pre>
 <h2>Java solutions to AOC</h2>
