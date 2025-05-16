@@ -21,10 +21,10 @@ import java.util.Map;
 // /java -Xmx2g year2019_day3.java *i1.txt
 
 
-class year2022_day4 {
+class year2022_day4_2 {
 	public static int [][] keypad = {{1, 2, 3}, {4, 5, 6}, {7, 8, 9}};
 	public static void main(String [] args) {
-		out.println("		2022 Day4.1");
+		out.println("		2022 Day4.2");
 		Vector<String> blah = new Vector<>();
 		try (BufferedReader br = new BufferedReader(new FileReader(args[0]))) {
 			String line;
