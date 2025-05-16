@@ -120,7 +120,7 @@ class year2023_day4_2 {
 	}
 }
 
-public class Tuple<X,Y > {
+class Tuple<X,Y > {
 	public final X first;
 	public final Y second;
 
