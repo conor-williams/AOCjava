@@ -17,7 +17,7 @@ while [ $year != 2025 ];  do
 			fi
 			if [ $day != 25 ]; then
 				if [ ! -f year${year}_day${day}_2.class ]; then
-					if [ -f $JAVAC year${year}_day${day}_2.java ]; then
+					if [ -f year${year}_day${day}_2.java ]; then
 						$JAVAC year${year}_day${day}_2.java
 					fi
 				fi
