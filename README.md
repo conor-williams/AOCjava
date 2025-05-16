@@ -4,6 +4,8 @@ o green button Code -> Download Zip
 o unzip AOCjava-main.zip 
 o unzip is a cygwin package
 o sh FIRST_JAVA.sh
+o these work with my inputfiles -- java code may need to be adjusted slightly for your input
+	
 </pre>
 <h2>Java solutions to AOC</h2>
 <address><b>first updated 06052025@19:32</b></address><br>
