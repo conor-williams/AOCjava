@@ -26,7 +26,6 @@ class year2023_day3_2 {
 	public static Vector <Vector <Tuple <Integer, Integer>>> digits = new Vector<>();
 	public static void main(String [] args) {
 		out.println("		2023 Day3.2");
-		out.println("	SLOW 2mins40seconds");
 		Vector<String> blah = new Vector<>();
 		int leny = 0;
 		try (BufferedReader br = new BufferedReader(new FileReader(args[0]))) {
@@ -90,23 +89,31 @@ class year2023_day3_2 {
 	}
 	public static Tuple <Integer, Integer> inTwoNums(int x, int y, int xlen, int ylen) {
 		char [] thechars = new char[20];
+		
+after:
 		for (int one = 0; one < digits.size(); one++) {
 			Vector <Tuple <Integer, Integer>> ve1 = digits.get(one);
+			int f1y = ve1.get(0).second;
+			if (Math.abs(y-f1y) > 1) {continue;}
+			
 			for (int two = 0; two < digits.size(); two++) {
 				if (one == two) {
 					continue;
 				}
 				Vector <Tuple <Integer, Integer>> ve2 = digits.get(two);
+				int f2y = ve2.get(0).second;
+				if (Math.abs(y-f2y) > 1) {continue;}
 				int m1 = getTheInt(ve1);
 				int m2 = getTheInt(ve2);
 
 				//out.print(m1); out.print(" connected to "); out.println(m2);
-				if (inBoth(x, y, ve1, ve2, xlen, ylen)) {
+				int ret = 0;
+				if ((ret = inBoth(x, y, ve1, ve2, xlen, ylen)) == 0) {
 					int mul1 = getTheInt(ve1);
 					int mul2 = getTheInt(ve2);
 					Tuple <Integer, Integer> tutu = new Tuple<>(mul1, mul2);
 					return tutu;
-				} else {
+				} else if (ret == 1) {
 				//	out.println("inBoth returned false...");
 				}
 			}
@@ -126,7 +133,7 @@ class year2023_day3_2 {
 		return Integer.valueOf(new String(thechars, 0, ve.size()));
 	}
 
-	public static boolean inBoth (int x, int y, Vector <Tuple <Integer, Integer>> ve1, Vector <Tuple <Integer, Integer>> ve2, int xlen, int ylen) {
+	public static int inBoth (int x, int y, Vector <Tuple <Integer, Integer>> ve1, Vector <Tuple <Integer, Integer>> ve2, int xlen, int ylen) {
 		int found1 = 0;
 		for (int ii = 0; ii < ve1.size(); ii++) {
 			Tuple <Integer, Integer> tu = ve1.get(ii);
@@ -209,9 +216,9 @@ class year2023_day3_2 {
 			}
 		}
 		if (found1 == 1 && found2 == 1) {
-			return true;
+			return 0;
 		} else {
-			return false;
+			return 1;
 		}
 	}
 }
