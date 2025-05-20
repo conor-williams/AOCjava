@@ -147,10 +147,10 @@ year: 2020
  2020 day 25 part 1  
 year: 2019
 <s> 2019 day 1 part 1  |  2019 day 1 part 2
- 2019 day 2 part 1  |  2019 day 2 part 2</s>
-<s> 2019 day 3 part 1  |  2019 day 3 part 2</s>
-<s> 2019 day 4 part 1  |  2019 day 4 part 2</s>
- 2019 day 5 part 1  |  2019 day 5 part 2
+ 2019 day 2 part 1  |  2019 day 2 part 2
+ 2019 day 3 part 1  |  2019 day 3 part 2
+ 2019 day 4 part 1  |  2019 day 4 part 2
+ 2019 day 5 part 1  |  2019 day 5 part 2</s>
  2019 day 6 part 1  |  2019 day 6 part 2
  2019 day 7 part 1  |  2019 day 7 part 2
  2019 day 8 part 1  |  2019 day 8 part 2
