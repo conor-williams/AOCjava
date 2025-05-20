@@ -18,9 +18,14 @@ import java.util.Collections;
 import java.lang.Character;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.*;
 // /java -Xmx2g year2019_day3.java *i1.txt
 
 
+//System.setOut(originalOut);
+//PrintStream originalOut = System.out;
+//System.setOut(new PrintStream(new java.io.OutputStream() { public void write(int b) { } }));
+//Scanner scanner = new Scanner(System.in); scanner.nextLine();
 class year2016_day2 {
 	public static int [][] keypad = {{1, 2, 3}, {4, 5, 6}, {7, 8, 9}};
 	public static void main(String [] args) {

@@ -1,9 +1,24 @@
-export JAVAC=/cygdrive/f/jdk-25/bin/javac.exe
+export JAVAC=/cygdrive/f/jdk-25/bin/javac.ex
 export JAVA=/cygdrive/f/jdk-25/bin/java.exe
 
+if [ ! -f $JAVAC ]; then
+	echo "set JAVAC in FIRST_JAVA.sh";
+	exit 0;
+else 
+	echo "JAVAC ok"
+fi
+
+if [ ! -f $JAVA ]; then
+	echo "set JAVA in FIRST_JAVA.sh";
+	exit 0
+else 
+	echo "JAVA ok"
+fi
+
+	
 ### a guide to running...
 echo "tar of input-2015-2014.tar.gz takes ~10seconds"
-tar -xvzf input-2015-2014.tar.gz
+tar -xvzf input-2015-2024.tar.gz
 
 echo "sh specialCopy.sh takes ~1minute"
 sh specialCopy.sh
