@@ -18,16 +18,13 @@ import java.util.Collections;
 import java.lang.Character;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.List;
-import java.util.ArrayList;
-import java.util.stream.Collectors;
 // /java -Xmx2g year2019_day3.java *i1.txt
 
 
-class year2017_day4_2 {
+class year2017_day5_2 {
 	public static int [][] keypad = {{1, 2, 3}, {4, 5, 6}, {7, 8, 9}};
 	public static void main(String [] args) {
-		out.println("		2017 Day4.2");
+		out.println("		2017 Day5.2");
 		Vector<String> blah = new Vector<>();
 		try (BufferedReader br = new BufferedReader(new FileReader(args[0]))) {
 			String line;
@@ -47,54 +44,26 @@ class year2017_day4_2 {
 
 		// Vector <Tuple <Integer, String>> ve1 = new Vector<>();
 		//BigInteger tot =  BigInteger.valueOf((long)0);
-		int tot = 0;
-		for (int i = 0; i < blah.size(); i++) {
-			Scanner scanner = new Scanner(blah.get(i));
-			scanner.useDelimiter("[\\s]+");
-			Vector <String> ve = new Vector<>();
-			while (scanner.hasNext()) {
-				ve.add(scanner.next().chars()
-                             		.sorted()
-	                             .mapToObj(c -> String.valueOf((char) c))
-        		                     .collect(Collectors.joining()));	
+		int pos = 0;
+		int posbefore = 0;
+		int steps = 0;
+		while (1==1) {
+			steps++;
+			//out.println(pos);
+			Integer bb = Integer.valueOf(blah.get(pos));
+			posbefore = pos;
+			if (bb >= 3) {
+				blah.set(posbefore, Integer.toString(bb-1));
+			} else {
+				blah.set(posbefore, Integer.toString(bb+1));
 			}
-                        int found = 0;
-after:
-                        for (int ii = 0; ii < ve.size()-1; ii++) {
-                                for (int jj = ii+1; jj < ve.size(); jj++) {
-                                        //out.print(ve.get(ii)); out.print(" V "); out.println(ve.get(jj));
-                                        if (ve.get(ii).equals(ve.get(jj))) {
-                                                found = 1;
-                                                break after;
-                                        }
-                                }
-                        }
-                        if (found == 0) {
-                                tot++;
-                        }
 
+			pos+=bb;
+			if (pos >= blah.size()) {break;}
 		}
 		out.print("**j_ans: ");
-		out.print(tot);
+		out.print(steps);
 		out.println("");
-	}
-
-	public static Set<String> generateAnagrams(String str) {
-		Set<String> result = new HashSet<>();
-		permute("", str, result);
-		return result;
-	}
-
-	private static void permute(String prefix, String remaining, Set<String> result) {
-		if (remaining.isEmpty()) {
-			result.add(prefix);
-		} else {
-			for (int i = 0; i < remaining.length(); i++) {
-				permute(prefix + remaining.charAt(i),
-						remaining.substring(0, i) + remaining.substring(i + 1),
-						result);
-			}
-		}
 	}
 }
 
