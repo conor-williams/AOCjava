@@ -18,37 +18,18 @@ import java.util.Collections;
 import java.lang.Character;
 import java.util.HashMap;
 import java.util.Map;
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
+import java.util.*;
 // /java -Xmx2g year2019_day3.java *i1.txt
 
 
-class year2016_day5 {
-	public static String generateMD5(String input) {
-		try {
-			// Create MessageDigest instance for MD5
-			MessageDigest md = MessageDigest.getInstance("MD5");
-
-			// Compute the hash
-			byte[] hashBytes = md.digest(input.getBytes());
-
-			// Convert byte array to hexadecimal string
-			StringBuilder hexString = new StringBuilder();
-			for (byte b : hashBytes) {
-				String hex = Integer.toHexString(0xff & b);
-				if (hex.length() == 1) {
-					hexString.append('0');
-				}
-				hexString.append(hex);
-			}
-			return hexString.toString();
-		} catch (NoSuchAlgorithmException e) {
-			throw new RuntimeException("MD5 algorithm not found", e);
-		}
-	}
+//System.setOut(originalOut);
+//PrintStream originalOut = System.out;
+//System.setOut(new PrintStream(new java.io.OutputStream() { public void write(int b) { } }));
+//Scanner scanner = new Scanner(System.in); scanner.nextLine();
+class year2016_day6_2 {
 	public static int [][] keypad = {{1, 2, 3}, {4, 5, 6}, {7, 8, 9}};
 	public static void main(String [] args) {
-		out.println("		2016 Day5.1");
+		out.println("		2016 Day6.2");
 		Vector<String> blah = new Vector<>();
 		try (BufferedReader br = new BufferedReader(new FileReader(args[0]))) {
 			String line;
@@ -59,37 +40,48 @@ class year2016_day5 {
 			e.printStackTrace();
 		}	
 
-		////////////////////
+		//	String firstpart = Pattern.quote("mul(");
+		//Pattern p = Pattern.compile("(L|R)(\\d+)");
+		//	Matcher m = p.matcher("17-MAR-11 15.52.25.000000000");
+		//	m.find();
+		//
+		//	month= m.group(2);
 
-		String in = blah.get(0); 
-		int i = 0;
+		// Vector <Tuple <Integer, String>> ve1 = new Vector<>();
+		//BigInteger tot =  BigInteger.valueOf((long)0);
+		int [][] count = new int [10][27];
+		int numlets = blah.get(0).length();
+		for (int i = 0; i < blah.size(); i++) {
+			String ne = blah.get(i);
+			for (int ii = 0; ii < ne.length(); ii++) {
+				int val = ne.charAt(ii) - 'a';
+				count[ii][val]++;
+				//out.print(ii); out.print(" "); out.println(val);
+			}
+		}
+		int [] min = new int[10];
+		for (int ii = 0; ii < numlets; ii++) {
+			min[ii] = 99999;
+		}
+
+		int [] let = new int[10];
+		for (int zz = 0; zz < numlets; zz++) {
+			for (int qq = 0; qq < 26; qq++) {
+				//out.println(count[zz][qq]);
+				if (count[zz][qq] < min[zz] && count[zz][qq] != 0) {min[zz] = count[zz][qq]; let[zz] = qq;}
+			}
+			//Scanner scanner = new Scanner(System.in); scanner.nextLine();
+		}
 		char [] ans = new char[10];
-		int times = 0;
-		do {
-			//String an = Integer.toHexString(i).toUpperCase();
-			String an = Integer.toString(i);
-			String input = in + an;
-			String md5Hash = generateMD5(input);
-			int found = 0;
-			for (int kk = 0; kk < 5; kk++) {
-				if (md5Hash.charAt(kk) != '0') {
-					found = 1;
-					break;
-				}
-			}
-			if (found == 0) {
-				ans[times] = md5Hash.charAt(5);
-				times++;
-				if (times == 8) {break;}
-
-			}
-			i++;
-		} while (1 == 1);
+		for (int zz = 0; zz < numlets; zz++) {
+			ans[zz] = (char)(let[zz]+'a');
+		}
+		out.println(ans);
+		String ansS = new String(ans, 0, numlets);
 
 		out.print("**j_ans: ");
-		out.print(new String(ans, 0, 8));
+		out.print(ansS);
 		out.println("");
-		///////////////////
 	}
 }
 
