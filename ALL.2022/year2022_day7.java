@@ -24,9 +24,6 @@ import java.lang.*;
 // /java -Xmx2g year2019_day3.java *i1.txt
 
 
-//		PrintStream originalOut = System.out;
-//		System.setOut(new PrintStream(new java.io.OutputStream() { public void write(int b) { } }));
-//		System.setOut(originalOut);
 //Scanner scanner = new Scanner(System.in); scanner.nextLine();
 // int max = var_ints.stream().max(Integer::compare).orElseThrow();
 // int position = var_ints.indexOf(max);
@@ -52,6 +49,8 @@ class year2022_day7 {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}	
+		PrintStream originalOut = System.out;
+		System.setOut(new PrintStream(new java.io.OutputStream() { public void write(int b) { } }));
 
 
 		Pattern p1 = Pattern.compile("([\\d]+) ([a-z.]+)");
@@ -207,6 +206,7 @@ class year2022_day7 {
 		}
 
 
+		System.setOut(originalOut);
 
 		out.print("**j_ans: ");
 		out.print(tottot);
