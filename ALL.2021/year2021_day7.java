@@ -34,10 +34,10 @@ import java.io.*;
 // System.out.println("Key: " + entry.getKey() + ", Value: " + entry.getValue());
 //}
 
-class year2021_day2 {
+class year2021_day7 {
 	public static int [][] keypad = {{1, 2, 3}, {4, 5, 6}, {7, 8, 9}};
 	public static void main(String [] args) {
-		out.println("		2021 Day2.1");
+		out.println("		2021 Day7.1");
 		Vector<String> blah = new Vector<>();
 		try (BufferedReader br = new BufferedReader(new FileReader(args[0]))) {
 			String line;

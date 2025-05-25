@@ -25,9 +25,6 @@ import java.util.Deque;
 // /java -Xmx2g year2019_day3.java *i1.txt
 
 
-//System.setOut(originalOut);
-//PrintStream originalOut = System.out;
-//System.setOut(new PrintStream(new java.io.OutputStream() { public void write(int b) { } }));
 //Scanner scanner = new Scanner(System.in); scanner.nextLine();
 // int max = var_ints.stream().max(Integer::compare).orElseThrow();
 // int position = var_ints.indexOf(max);
@@ -45,6 +42,8 @@ class year2021_day6 {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}	
+		PrintStream originalOut = System.out;
+		System.setOut(new PrintStream(new java.io.OutputStream() { public void write(int b) { } }));
 
 		//	String firstpart = Pattern.quote("mul(");
 		//Pattern p = Pattern.compile("(L|R)(\\d+)");
@@ -89,6 +88,7 @@ class year2021_day6 {
 			System.out.print(element + " ");
 			cou += element;
 		}
+		System.setOut(originalOut);
 		out.print("**j_ans: ");
 		out.print(cou);
 		out.println("");
