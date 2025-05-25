@@ -90,8 +90,10 @@ class year2022_day25 {
 			}
 		}
 		newVal[value.length()] = '\0';
+		String ans = new String(newVal, 0, value.length());
 		System.out.print("**j_ans: ");
-		System.out.println(newVal);
+		System.out.print(ans);
+		System.out.println();
 					
 	}
 }
