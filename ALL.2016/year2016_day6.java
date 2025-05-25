@@ -72,7 +72,7 @@ class year2016_day6 {
 		for (int zz = 0; zz < numlets; zz++) {
 			ans[zz] = (char)(let[zz]+'a');
 		}
-		out.println(ans);
+		//out.println(ans);
 		String ansS = new String(ans, 0, numlets);
 
 		out.print("**j_ans: ");
