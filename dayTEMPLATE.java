@@ -19,13 +19,22 @@ import java.lang.Character;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.*;
+import java.io.*;
+import java.lang.*;
 // /java -Xmx2g year2019_day3.java *i1.txt
 
 
-//System.setOut(originalOut);
-//PrintStream originalOut = System.out;
-//System.setOut(new PrintStream(new java.io.OutputStream() { public void write(int b) { } }));
+//		PrintStream originalOut = System.out;
+//		System.setOut(new PrintStream(new java.io.OutputStream() { public void write(int b) { } }));
+//		System.setOut(originalOut);
 //Scanner scanner = new Scanner(System.in); scanner.nextLine();
+// int max = var_ints.stream().max(Integer::compare).orElseThrow();
+// int position = var_ints.indexOf(max);
+
+//                        for (Map.Entry<Character, Vector<Character>> entry : mp.entrySet()) {
+                                // System.out.println("Key: " + entry.getKey() + ", Value: " + entry.getValue());
+//}
+
 class year2016_day2 {
 	public static int [][] keypad = {{1, 2, 3}, {4, 5, 6}, {7, 8, 9}};
 	public static void main(String [] args) {
@@ -49,6 +58,8 @@ class year2016_day2 {
 
 		// Vector <Tuple <Integer, String>> ve1 = new Vector<>();
 		//BigInteger tot =  BigInteger.valueOf((long)0);
+		//BigInteger one =  new BigInteger("1");
+		//BigInteger zero =  new BigInteger("0");
 		int x = 1;
 		int y = 1;
 		int [] ar = new int[blah.size()];
@@ -96,9 +107,7 @@ class year2016_day2 {
 
 		}
 		out.print("**j_ans: ");
-		for (int num: ar) {
-			out.print(num);
-		}
+		//out.print(num);
 		out.println("");
 	}
 }
