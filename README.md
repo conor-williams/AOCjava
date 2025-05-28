@@ -7,6 +7,8 @@ o set the <b>JAVA paths</b> at the top of FIRST_JAVA.sh
 o sh FIRST_JAVA.sh
 o these work with my inputfiles -- java code may need to be adjusted slightly for your input
 o note: a lot of java coding ahead...
+o websearch: Advent of code year 20xy day ab solutions 
+   (for many solutions / many days / many years (reddit))
 	
 </pre>
 <h2>Java solutions to AOC</h2>
