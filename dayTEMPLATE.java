@@ -24,9 +24,6 @@ import java.lang.*;
 // /java -Xmx2g year2019_day3.java *i1.txt
 
 
-//		PrintStream originalOut = System.out;
-//		System.setOut(new PrintStream(new java.io.OutputStream() { public void write(int b) { } }));
-//		System.setOut(originalOut);
 //Scanner scanner = new Scanner(System.in); scanner.nextLine();
 // int max = var_ints.stream().max(Integer::compare).orElseThrow();
 // int position = var_ints.indexOf(max);
@@ -35,6 +32,7 @@ import java.lang.*;
                                 // System.out.println("Key: " + entry.getKey() + ", Value: " + entry.getValue());
 //}
 
+@SuppressWarnings("unchecked")
 class year2016_day2 {
 	public static int [][] keypad = {{1, 2, 3}, {4, 5, 6}, {7, 8, 9}};
 	public static void main(String [] args) {
@@ -48,6 +46,8 @@ class year2016_day2 {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}	
+//		PrintStream originalOut = System.out;
+//		System.setOut(new PrintStream(new java.io.OutputStream() { public void write(int b) { } }));
 
 		//	String firstpart = Pattern.quote("mul(");
 		//Pattern p = Pattern.compile("(L|R)(\\d+)");
@@ -60,9 +60,6 @@ class year2016_day2 {
 		//BigInteger tot =  BigInteger.valueOf((long)0);
 		//BigInteger one =  new BigInteger("1");
 		//BigInteger zero =  new BigInteger("0");
-		int x = 1;
-		int y = 1;
-		int [] ar = new int[blah.size()];
 		for (int i = 0; i < blah.size(); i++) {
 			/*
 			   Scanner scanner = new Scanner(blah.get(i));
@@ -79,33 +76,8 @@ class year2016_day2 {
 			m.put("Geek1", 1);
 
 */
-
-			String ne = blah.get(i);
-			for (int ii = 0; ii < ne.length(); ii++) { 
-				switch (ne.charAt(ii)) {
-					case 'U':
-						if (y == 0) {continue;}
-						y--;
-						break;
-					case 'R':
-						if (x == 2) {continue;}
-						x++;
-						break;
-					case 'D':
-						if (y == 2) {continue;}
-						y++;
-						break;
-					case 'L':
-						if (x == 0) {continue;}
-						x--;
-						break;
-				}
-
-			}
-			ar[i] = keypad[y][x];
-			//	out.println(ar[i]);
-
 		}
+//		System.setOut(originalOut);
 		out.print("**j_ans: ");
 		//out.print(num);
 		out.println("");

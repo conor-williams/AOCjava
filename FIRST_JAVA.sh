@@ -1,4 +1,4 @@
-export JAVAC=/cygdrive/f/jdk-25/bin/javac.ex
+export JAVAC=/cygdrive/f/jdk-25/bin/javac.exe
 export JAVA=/cygdrive/f/jdk-25/bin/java.exe
 
 if [ ! -f $JAVAC ]; then
