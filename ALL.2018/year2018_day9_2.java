@@ -78,9 +78,9 @@ class year2018_day9_2 {
 			Matcher m = p.matcher(blah.get(i));
 			m.find();
 			Integer players = Integer.valueOf(m.group(1));
-			out.println(m.group(2));
+			//out.println(m.group(2));
 			Integer lastMarble = Integer.valueOf(m.group(2)) * 100;
-			out.println(lastMarble);
+			//out.println(lastMarble);
 			long [] score = new long[players+1];
 			int player = 6;
 			maxScore = 0;
