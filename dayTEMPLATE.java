@@ -33,19 +33,38 @@ import java.lang.*;
 //}
 
 @SuppressWarnings("unchecked")
-class year2016_day2 {
+class year20XY_dayZ {
+//	        public static int maxPath = 0;
+ //       public static int sx = 0;
+  //      public static int sy = 0;
+   //     public static char grid [][] = new char[sy][sx];
+    //    public static int already [][] = new int[sy][sx];
+
 	public static int [][] keypad = {{1, 2, 3}, {4, 5, 6}, {7, 8, 9}};
 	public static void main(String [] args) {
-		out.println("		2016 Day2.1");
+		out.println("		20XY DayZ.W");
 		Vector<String> blah = new Vector<>();
+		//int leny = 0;
+                //int lenx = 0;
 		try (BufferedReader br = new BufferedReader(new FileReader(args[0]))) {
 			String line;
 			while ((line = br.readLine()) != null) {
+                                //if (lenx == 0) {lenx = line.length();}
 				blah.add(line);
+				//leny++;
 			}
 		} catch (IOException e) {
 			e.printStackTrace();
 		}	
+                /*sx = lenx;
+                sy = leny;
+                grid = new char[sy][sx];
+                already = new int[sy][sx];
+                for (int i = 0; i < blah.size();i++) {
+                        grid[i] = blah.get(i).toCharArray();
+                }
+		*/
+
 //		PrintStream originalOut = System.out;
 //		System.setOut(new PrintStream(new java.io.OutputStream() { public void write(int b) { } }));
 
@@ -97,12 +116,9 @@ class Tuple<X,Y > {
 		Tuple tu2 = (Tuple) o;
 		if (this == o) return true;
 		if (!(o instanceof Tuple)) return false;
-		int fir1 = (int)first;
-		int fir2 = (int)tu2.first;
-		int sec1 = (int)second;
-		int sec2 = (int)tu2.second;
-		if (fir1 != fir2) {return false;}
-		if (sec1 != sec2) {return false;}
+		if (!this.first.equals(tu2.first)) {return false;}
+                if (!this.second.equals(tu2.second)) {return false;}
+
 		return true;
 	}
 	@Override

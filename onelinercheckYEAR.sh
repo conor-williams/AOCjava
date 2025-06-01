@@ -6,10 +6,11 @@ while [ $day != 26 ]; do
 	cd $year/day$day/
 	if [ -f year${year}_day${day}.class ] ; then
 		
-		$JAVA -Xmx3g year${year}_day$day $year.day$day.i1.txt
+		$JAVA -Xmx3g -Xss1g year${year}_day$day $year.day$day.i1.txt
 	fi 
 	if [ -f year${year}_day${day}_2.class ] ; then
-		$JAVA -Xmx3g year${year}_day${day}_2 $year.day$day.i1.txt
+		$JAVA -Xmx3g -Xss1g year${year}_day${day}_2 $year.day$day.i1.txt
 	fi 
 	day=$(($day+1));
 done
+#-Xss1g
