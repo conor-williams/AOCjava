@@ -29,8 +29,8 @@ year: 2024
  2024 day 8 part 1  |  2024 day 8 part 2
  2024 day 9  part 1  |  2024 day 9 part 2
  2024 day 10 part 1  |  2024 day 10 part 2
- 2024 day 11 part 1  |  2024 day 11 part 2</s>
- 2024 day 12 part 1  |  2024 day 12 part 2
+ 2024 day 11 part 1  |  2024 day 11 part 2
+ 2024 day 12 part 1  |  2024 day 12 part 2</s>
  2024 day 13 part 1  |  2024 day 13 part 2
  2024 day 14 part 1  |  2024 day 14 part 2
  2024 day 15 part 1  |  2024 day 15 part 2
@@ -81,8 +81,8 @@ year: 2022
  2022 day 8 part 1  |  2022 day 8 part 2
  2022 day 9  part 1  |  2022 day 9 part 2
  2022 day 10 part 1  |  2022 day 10 part 2
- 2022 day 11 part 1  |  2022 day 11 part 2</s>
- 2022 day 12 part 1  |  2022 day 12 part 2
+ 2022 day 11 part 1  |  2022 day 11 part 2
+ 2022 day 12 part 1  |  2022 day 12 part 2</s>
  2022 day 13 part 1  |  2022 day 13 part 2
  2022 day 14 part 1  |  2022 day 14 part 2
  2022 day 15 part 1  |  2022 day 15 part 2
@@ -107,8 +107,8 @@ year: 2021
  2021 day 8 part 1  |  2021 day 8 part 2
  2021 day 9  part 1  |  2021 day 9 part 2
  2021 day 10 part 1  |  2021 day 10 part 2
- 2021 day 11 part 1  |  2021 day 11 part 2</s>
- 2021 day 12 part 1  |  2021 day 12 part 2
+ 2021 day 11 part 1  |  2021 day 11 part 2
+ 2021 day 12 part 1  |  2021 day 12 part 2</s>
  2021 day 13 part 1  |  2021 day 13 part 2
  2021 day 14 part 1  |  2021 day 14 part 2
  2021 day 15 part 1  |  2021 day 15 part 2
@@ -133,8 +133,8 @@ year: 2020
  2020 day 8 part 1  |  2020 day 8 part 2
  2020 day 9  part 1  |  2020 day 9 part 2
  2020 day 10 part 1  |  2020 day 10 part 2
- 2020 day 11 part 1  |  2020 day 11 part 2</s>
- 2020 day 12 part 1  |  2020 day 12 part 2
+ 2020 day 11 part 1  |  2020 day 11 part 2
+ 2020 day 12 part 1  |  2020 day 12 part 2</s>
  2020 day 13 part 1  |  2020 day 13 part 2
  2020 day 14 part 1  |  2020 day 14 part 2
  2020 day 15 part 1  |  2020 day 15 part 2
@@ -159,8 +159,8 @@ year: 2019
  2019 day 8 part 1  |  2019 day 8 part 2
  2019 day 9  part 1  |  2019 day 9 part 2
  2019 day 10 part 1  |  2019 day 10 part 2
- 2019 day 11 part 1  |  2019 day 11 part 2</s>
- 2019 day 12 part 1  |  2019 day 12 part 2
+ 2019 day 11 part 1  |  2019 day 11 part 2
+ 2019 day 12 part 1  |  2019 day 12 part 2</s>
  2019 day 13 part 1  |  2019 day 13 part 2
  2019 day 14 part 1  |  2019 day 14 part 2
  2019 day 15 part 1  |  2019 day 15 part 2
@@ -185,8 +185,8 @@ year: 2018
  2018 day 8 part 1  |  2018 day 8 part 2
  2018 day 9  part 1  |  2018 day 9 part 2
  2018 day 10 part 1  |  2018 day 10 part 2
- 2018 day 11 part 1  |  2018 day 11 part 2</s>
- 2018 day 12 part 1  |  2018 day 12 part 2
+ 2018 day 11 part 1  |  2018 day 11 part 2
+ 2018 day 12 part 1  |  2018 day 12 part 2</s>
  2018 day 13 part 1  |  2018 day 13 part 2
  2018 day 14 part 1  |  2018 day 14 part 2
  2018 day 15 part 1  |  2018 day 15 part 2
@@ -211,8 +211,8 @@ year: 2017
  2017 day 8 part 1  |  2017 day 8 part 2
  2017 day 9  part 1  |  2017 day 9 part 2
  2017 day 10 part 1  |  2017 day 10 part 2
- 2017 day 11 part 1  |  2017 day 11 part 2</s>
- 2017 day 12 part 1  |  2017 day 12 part 2
+ 2017 day 11 part 1  |  2017 day 11 part 2
+ 2017 day 12 part 1  |  2017 day 12 part 2</s>
  2017 day 13 part 1  |  2017 day 13 part 2
  2017 day 14 part 1  |  2017 day 14 part 2
  2017 day 15 part 1  |  2017 day 15 part 2
@@ -238,7 +238,7 @@ year: 2016
  2016 day 9  part 1  |  2016 day 9 part 2
  2016 day 10 part 1  |  2016 day 10 part 2</s>
  2016 day 11 part 1  |  2016 day 11 part 2
- 2016 day 12 part 1  |  2016 day 12 part 2
+ <s>2016 day 12 part 1  |  2016 day 12 part 2</s>
  2016 day 13 part 1  |  2016 day 13 part 2
  2016 day 14 part 1  |  2016 day 14 part 2
  2016 day 15 part 1  |  2016 day 15 part 2
@@ -263,8 +263,8 @@ year: 2015
  2015 day 8 part 1  |  2015 day 8 part 2
  2015 day 9  part 1  |  2015 day 9 part 2
  2015 day 10 part 1  |  2015 day 10 part 2
- 2015 day 11 part 1  |  2015 day 11 part 2</s>
- 2015 day 12 part 1  |  2015 day 12 part 2
+ 2015 day 11 part 1  |  2015 day 11 part 2
+ 2015 day 12 part 1  |  2015 day 12 part 2</s>
  2015 day 13 part 1  |  2015 day 13 part 2
  2015 day 14 part 1  |  2015 day 14 part 2
  2015 day 15 part 1  |  2015 day 15 part 2
@@ -288,5 +288,6 @@ year: 2015
 	9 END 29/05/2025
 	10 END 01/06/2025
 	11 END 05/06/2025
+	12 END 11/06/2025
 </pre>
 
