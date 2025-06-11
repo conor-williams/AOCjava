@@ -220,14 +220,14 @@ class year2022_day11_2 {
 }
 
 class Monkey {
-	long times;
-	int number;
-	Vector <BigInteger> starts;
-	String plusmul;
-	String opVal;
-	BigInteger divby;
-	int monkeytrue;
-	int monkeyfalse;
+	public long times;
+	public int number;
+	public Vector <BigInteger> starts;
+	public String plusmul;
+	public String opVal;
+	public BigInteger divby;
+	public int monkeytrue;
+	public int monkeyfalse;
 }
 
 class Tuple<X,Y > {

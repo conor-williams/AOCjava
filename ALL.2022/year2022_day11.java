@@ -204,14 +204,14 @@ class year2022_day11 {
 }
 
 class Monkey {
-	int times;
-	int number;
-	Vector <Integer> starts;
-	String plusmul;
-	String opVal;
-	int divby;
-	int monkeytrue;
-	int monkeyfalse;
+	public int times;
+	public int number;
+	public Vector <Integer> starts;
+	public String plusmul;
+	public String opVal;
+	public int divby;
+	public int monkeytrue;
+	public int monkeyfalse;
 }
 
 class Tuple<X,Y > {
