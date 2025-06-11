@@ -77,9 +77,9 @@ class year2022_day11_2 {
 		BigInteger one =  new BigInteger("1");
 		BigInteger zero =  new BigInteger("0");
 
-		Monkey monkeys[] = new Monkey[10];
+		Monkey2 monkeys[] = new Monkey2[10];
 		for (int ii = 0; ii < 10; ii++) {
-			monkeys[ii] = new Monkey();
+			monkeys[ii] = new Monkey2();
 		}
 		int monkeyNum = 0;
 		for (int i = 0; i < blah.size(); i++) {
@@ -219,7 +219,7 @@ class year2022_day11_2 {
 	}
 }
 
-class Monkey {
+class Monkey2 {
 	public long times;
 	public int number;
 	public Vector <BigInteger> starts;
