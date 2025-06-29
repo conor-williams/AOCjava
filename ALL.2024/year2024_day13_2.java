@@ -35,7 +35,7 @@ import java.lang.*;
 //}
 
 @SuppressWarnings("unchecked")
-class year2024_day13 {
+class year2024_day13_2 {
 //	        public static int maxPath = 0;
  //       public static int sx = 0;
   //      public static int sy = 0;
@@ -44,7 +44,7 @@ class year2024_day13 {
 
 	public static int [][] keypad = {{1, 2, 3}, {4, 5, 6}, {7, 8, 9}};
 	public static void main(String [] args) {
-		out.println("		2024 Day13.1");
+		out.println("		2024 Day13.2");
 		out.flush();
 		Vector<String> blah = new Vector<>();
 		//int leny = 0;
