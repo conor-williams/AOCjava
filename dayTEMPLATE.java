@@ -24,6 +24,8 @@ import java.lang.*;
 // /java -Xmx2g year2019_day3.java *i1.txt
 
 
+//                        grid = Arrays.stream(gridTmp).map(char[]::clone).toArray(char[][]::new);
+// pe.sort(Comparator.comparingInt((TreTuple t) -> (int)t.third).thenComparingInt((TreTuple t) -> (int)t.second).thenComparingInt((TreTuple t) -> (int)t.first));///tuples.sort(Comparator.comparingInt(tuple -> tuple[0]));
 //Scanner scanner = new Scanner(System.in); scanner.nextLine();
 // int max = var_ints.stream().max(Integer::compare).orElseThrow();
 // int position = var_ints.indexOf(max);
@@ -43,6 +45,7 @@ class year20XY_dayZ {
 	public static int [][] keypad = {{1, 2, 3}, {4, 5, 6}, {7, 8, 9}};
 	public static void main(String [] args) {
 		out.println("		20XY DayZ.W");
+		out.flush();
 		Vector<String> blah = new Vector<>();
 		//int leny = 0;
                 //int lenx = 0;
@@ -56,6 +59,8 @@ class year20XY_dayZ {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}	
+//		PrintStream originalOut = System.out;
+//		System.setOut(new PrintStream(new java.io.OutputStream() { public void write(int b) { } }));
                 /*sx = lenx;
                 sy = leny;
                 grid = new char[sy][sx];
@@ -65,8 +70,6 @@ class year20XY_dayZ {
                 }
 		*/
 
-//		PrintStream originalOut = System.out;
-//		System.setOut(new PrintStream(new java.io.OutputStream() { public void write(int b) { } }));
 
 		//	String firstpart = Pattern.quote("mul(");
 		//Pattern p = Pattern.compile("(L|R)(\\d+)");
@@ -127,4 +130,3 @@ class Tuple<X,Y > {
 	}
 
 }
-
