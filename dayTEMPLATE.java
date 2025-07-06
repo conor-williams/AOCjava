@@ -30,25 +30,23 @@ import java.lang.*;
 // int max = var_ints.stream().max(Integer::compare).orElseThrow();
 // int position = var_ints.indexOf(max);
 
-//                        for (Map.Entry<Character, Vector<Character>> entry : mp.entrySet()) {
+//                        for (var entry : mp.entrySet()) {
                                 // System.out.println("Key: " + entry.getKey() + ", Value: " + entry.getValue());
 //}
 
 @SuppressWarnings("unchecked")
 class year20XY_dayZ {
 //	        public static int maxPath = 0;
- //       public static int sx = 0;
-  //      public static int sy = 0;
-   //     public static char grid [][] = new char[sy][sx];
-    //    public static int already [][] = new int[sy][sx];
+    //    public static int lenx = 0;
+     //   public static int leny = 0;
+      //  public static char grid [][] = new char[leny][lenx];
+    //    public static int already [][] = new int[leny][lenx];
 
 	public static int [][] keypad = {{1, 2, 3}, {4, 5, 6}, {7, 8, 9}};
 	public static void main(String [] args) {
 		out.println("		20XY DayZ.W");
 		out.flush();
 		Vector<String> blah = new Vector<>();
-		//int leny = 0;
-                //int lenx = 0;
 		try (BufferedReader br = new BufferedReader(new FileReader(args[0]))) {
 			String line;
 			while ((line = br.readLine()) != null) {
@@ -61,10 +59,9 @@ class year20XY_dayZ {
 		}	
 //		PrintStream originalOut = System.out;
 //		System.setOut(new PrintStream(new java.io.OutputStream() { public void write(int b) { } }));
-                /*sx = lenx;
-                sy = leny;
-                grid = new char[sy][sx];
-                already = new int[sy][sx];
+                /*
+                grid = new char[leny][lenx];
+                already = new int[leny][lenx];
                 for (int i = 0; i < blah.size();i++) {
                         grid[i] = blah.get(i).toCharArray();
                 }
@@ -107,8 +104,8 @@ class year20XY_dayZ {
 }
 
 class Tuple<X,Y > {
-	public final X first;
-	public final Y second;
+	public X first;
+	public Y second;
 
 	public Tuple(X first, Y second) {
 		this.first = first;
@@ -130,3 +127,105 @@ class Tuple<X,Y > {
 	}
 
 }
+
+@SuppressWarnings("unchecked")
+class TreTuple<X,Y, Z> {
+        public X first;
+        public Y second;
+        public Z third;
+
+        public TreTuple(Object o) {
+                TreTuple tu2 = (TreTuple) o;
+                this.first = (X)tu2.first;
+                this.second = (Y)tu2.second;
+                this.third = (Z)tu2.third;
+        }
+        public TreTuple(X first, Y second, Z third) {
+                this.first = first;
+                this.second = second;
+                this.third = third;
+        }
+        @Override
+        public boolean equals(Object o) {
+                TreTuple tu2 = (TreTuple) o;
+                if (this == o) return true;
+                if (!(o instanceof TreTuple)) return false;
+                if (!this.first.equals(tu2.first)) {return false;}
+                if (!this.second.equals(tu2.second)) {return false;}
+                if (!this.third.equals(tu2.third)) {return false;}
+                return true;
+        }
+        @Override
+        public int hashCode() {
+                return Objects.hash(first, second, third);
+        }
+
+}
+
+@SuppressWarnings("unchecked")
+class QuadTuple<X,Y, Z, W> {
+        public X first;
+        public Y second;
+        public Z third;
+        public W fourth;
+
+        public QuadTuple(X first, Y second, Z third, W fourth) {
+                this.first = first;
+                this.second = second;
+                this.third = third;
+                this.fourth = fourth;
+        }
+        @Override
+        public boolean equals(Object o) {
+                QuadTuple tu2 = (QuadTuple) o;
+                if (this == o) return true;
+                if (!(o instanceof QuadTuple)) return false;
+
+                if (!first.equals(tu2.first)) {return false;}
+                if (!second.equals(tu2.second)) {return false;}
+                if (!third.equals(tu2.third)) {return false;}
+                if (!fourth.equals(tu2.fourth)) {return false;}
+                return true;
+        }
+        @Override
+        public int hashCode() {
+                return Objects.hash(first, second, third, fourth);
+        }
+
+}
+
+@SuppressWarnings("unchecked")
+class CinqTuple<X,Y, Z, V, W> {
+        public X first;
+        public Y second;
+        public Z third;
+        public V fourth;
+        public W fifth;
+
+        public CinqTuple(X first, Y second, Z third, V fourth, W fifth) {
+                this.first = first;
+                this.second = second;
+                this.third = third;
+                this.fourth = fourth;
+                this.fifth = fifth;
+        }
+        @Override
+        public boolean equals(Object o) {
+                CinqTuple tu2 = (CinqTuple) o;
+                if (this == o) return true;
+                if (!(o instanceof CinqTuple)) return false;
+
+                if (!first.equals(tu2.first)) {return false;}
+                if (!second.equals(tu2.second)) {return false;}
+                if (!third.equals(tu2.third)) {return false;}
+                if (!fourth.equals(tu2.fourth)) {return false;}
+                if (!fifth.equals(tu2.fifth)) {return false;}
+                return true;
+        }
+        @Override
+        public int hashCode() {
+                return Objects.hash(first, second, third, fourth, fifth);
+        }
+
+}
+
