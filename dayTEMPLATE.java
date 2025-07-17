@@ -33,7 +33,7 @@ import java.lang.*;
 //                        for (var entry : mp.entrySet()) {
                                 // System.out.println("Key: " + entry.getKey() + ", Value: " + entry.getValue());
 //}
-
+//// Arrays.stream(array).forEach(row -> Arrays.fill(row, 0));
 @SuppressWarnings("unchecked")
 class year20XY_dayZ {
 //	        public static int maxPath = 0;
