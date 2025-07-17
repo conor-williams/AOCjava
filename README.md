@@ -10,7 +10,9 @@ o these work with my inputfiles -- java code may need to be adjusted slightly fo
 o note: a lot of java coding ahead...
 o websearch: Advent of code year 20xy day ab solutions 
    (for many solutions / many days / many years (reddit))
-	
+o my 2 cents -- java is saving me tons of time with its awesome runtime checks (plus an exact line number of issue)
+	-- execution time is on a par with c++
+	-- if i was to code the next one i will probably write it in java and then port to c++
 </pre>
 <h2>Java solutions to AOC</h2>
 <address><b>first updated 06052025@19:32</b></address><br>
@@ -33,8 +35,8 @@ year: 2024
  2024 day 12 part 1  |  2024 day 12 part 2
  2024 day 13 part 1  |  2024 day 13 part 2
  2024 day 14 part 1  |  2024 day 14 part 2
- 2024 day 15 part 1  |  2024 day 15 part 2</s>
- 2024 day 16 part 1  |  2024 day 16 part 2
+ 2024 day 15 part 1  |  2024 day 15 part 2
+ 2024 day 16 part 1  |  2024 day 16 part 2</s>
  2024 day 17 part 1  |  2024 day 17 part 2
  2024 day 18 part 1  |  2024 day 18 part 2
  2024 day 19 part 1  |  2024 day 19 part 2
@@ -59,8 +61,8 @@ year: 2023
  2023 day 12 part 1  |  2023 day 12 part 2
  <s>2023 day 13 part 1  |  2023 day 13 part 2
  2023 day 14 part 1  |  2023 day 14 part 2
- 2023 day 15 part 1  |  2023 day 15 part 2</s>
- 2023 day 16 part 1  |  2023 day 16 part 2
+ 2023 day 15 part 1  |  2023 day 15 part 2
+ 2023 day 16 part 1  |  2023 day 16 part 2</s>
  2023 day 17 part 1  |  2023 day 17 part 2
  2023 day 18 part 1  |  2023 day 18 part 2
  2023 day 19 part 1  |  2023 day 19 part 2
@@ -111,8 +113,8 @@ year: 2021
  2021 day 12 part 1  |  2021 day 12 part 2
  2021 day 13 part 1  |  2021 day 13 part 2
  2021 day 14 part 1  |  2021 day 14 part 2
- 2021 day 15 part 1  |  2021 day 15 part 2</s>
- 2021 day 16 part 1  |  2021 day 16 part 2
+ 2021 day 15 part 1  |  2021 day 15 part 2
+ 2021 day 16 part 1  |  2021 day 16 part 2</s>
  2021 day 17 part 1  |  2021 day 17 part 2
  2021 day 18 part 1  |  2021 day 18 part 2
  2021 day 19 part 1  |  2021 day 19 part 2
@@ -137,8 +139,8 @@ year: 2020
  2020 day 12 part 1  |  2020 day 12 part 2
  2020 day 13 part 1  |  2020 day 13 part 2
  2020 day 14 part 1  |  2020 day 14 part 2
- 2020 day 15 part 1  |  2020 day 15 part 2</s>
- 2020 day 16 part 1  |  2020 day 16 part 2
+ 2020 day 15 part 1  |  2020 day 15 part 2
+ 2020 day 16 part 1  |  2020 day 16 part 2</s>
  2020 day 17 part 1  |  2020 day 17 part 2
  2020 day 18 part 1  |  2020 day 18 part 2
  2020 day 19 part 1  |  2020 day 19 part 2
@@ -163,8 +165,8 @@ year: 2019
  2019 day 12 part 1  |  2019 day 12 part 2
  2019 day 13 part 1  |  2019 day 13 part 2
  2019 day 14 part 1  |  2019 day 14 part 2
- 2019 day 15 part 1  |  2019 day 15 part 2</s>
- 2019 day 16 part 1  |  2019 day 16 part 2
+ 2019 day 15 part 1  |  2019 day 15 part 2
+ 2019 day 16 part 1  |  2019 day 16 part 2</s>
  2019 day 17 part 1  |  2019 day 17 part 2
  2019 day 18 part 1  |  2019 day 18 part 2
  2019 day 19 part 1  |  2019 day 19 part 2
@@ -190,7 +192,7 @@ year: 2018
  2018 day 13 part 1  |  2018 day 13 part 2
  2018 day 14 part 1  |  2018 day 14 part 2</s>
  2018 day 15 part 1  |  2018 day 15 part 2
- 2018 day 16 part 1  |  2018 day 16 part 2
+ <s>2018 day 16 part 1  |  2018 day 16 part 2</s>
  2018 day 17 part 1  |  2018 day 17 part 2
  2018 day 18 part 1  |  2018 day 18 part 2
  2018 day 19 part 1  |  2018 day 19 part 2
@@ -215,8 +217,8 @@ year: 2017
  2017 day 12 part 1  |  2017 day 12 part 2
  2017 day 13 part 1  |  2017 day 13 part 2
  2017 day 14 part 1  |  2017 day 14 part 2
- 2017 day 15 part 1  |  2017 day 15 part 2</s>
- 2017 day 16 part 1  |  2017 day 16 part 2
+ 2017 day 15 part 1  |  2017 day 15 part 2
+ 2017 day 16 part 1  |  2017 day 16 part 2</s>
  2017 day 17 part 1  |  2017 day 17 part 2
  2017 day 18 part 1  |  2017 day 18 part 2
  2017 day 19 part 1  |  2017 day 19 part 2
@@ -241,8 +243,8 @@ year: 2016
  <s>2016 day 12 part 1  |  2016 day 12 part 2
  2016 day 13 part 1  |  2016 day 13 part 2
  2016 day 14 part 1  |  2016 day 14 part 2
- 2016 day 15 part 1  |  2016 day 15 part 2</s>
- 2016 day 16 part 1  |  2016 day 16 part 2
+ 2016 day 15 part 1  |  2016 day 15 part 2
+ 2016 day 16 part 1  |  2016 day 16 part 2</s>
  2016 day 17 part 1  |  2016 day 17 part 2
  2016 day 18 part 1  |  2016 day 18 part 2
  2016 day 19 part 1  |  2016 day 19 part 2
@@ -267,8 +269,8 @@ year: 2015
  2015 day 12 part 1  |  2015 day 12 part 2
  2015 day 13 part 1  |  2015 day 13 part 2
  2015 day 14 part 1  |  2015 day 14 part 2
- 2015 day 15 part 1  |  2015 day 15 part 2</s>
- 2015 day 16 part 1  |  2015 day 16 part 2
+ 2015 day 15 part 1  |  2015 day 15 part 2
+ 2015 day 16 part 1  |  2015 day 16 part 2</s>
  2015 day 17 part 1  |  2015 day 17 part 2
  2015 day 18 part 1  |  2015 day 18 part 2
  2015 day 19 part 1  |  2015 day 19 part 2
@@ -292,5 +294,6 @@ year: 2015
 	13 END 29/06/2025 SJ
 	14 END 06/07/2023
 	15 END 12/07/2023
+	16 END 17/07/2023
 </pre>
 
