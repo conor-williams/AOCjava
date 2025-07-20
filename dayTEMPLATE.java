@@ -21,7 +21,11 @@ import java.util.Map;
 import java.util.*;
 import java.io.*;
 import java.lang.*;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+
 // /java -Xmx2g year2019_day3.java *i1.txt
+
 
 
 //                        grid = Arrays.stream(gridTmp).map(char[]::clone).toArray(char[][]::new);
