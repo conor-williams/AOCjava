@@ -10,9 +10,12 @@ o these work with my inputfiles -- java code may need to be adjusted slightly fo
 o note: a lot of java coding ahead...
 o websearch: Advent of code year 20xy day ab solutions 
    (for many solutions / many days / many years (reddit))
-o my 2 cents -- java is saving me tons of time with its awesome runtime checks (plus an exact line number of an issue)
-	-- execution time is on a par with c++
-	-- if i was to code the next one i will probably write it in java and then port to c++
+o my 2 cents 
+	-- Java is saving me tons of time with its awesome runtime checks (plus an exact line number of an issue)
+	-- execution time is on a par with c++ (for most things and of course faster in some areas and slower in some)
+	-- if i was to code the next AOC,25, i will probably write it in Java and then port to C++
+	-- Java has issues with quickly copying 2D/3D arrays/grids etc... even zeroeing 2D/3D grids is
+	     slow..(memset memcpy in C++ is quick) . is vector access a little slower in Java?
 </pre>
 <h2>Java solutions to AOC</h2>
 <address><b>first updated 06052025@19:32</b></address><br>
