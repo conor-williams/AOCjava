@@ -1,4 +1,8 @@
 year=2015
+if [ '@'$1 = '@' ]; then
+	echo "give a day"
+	exit
+fi
 day=$1
 pa=$PWD
 while [ $year != 2025 ]; do
