@@ -49,7 +49,7 @@ class year2023_day17 {
 	public static char grid [][] = new char[leny][lenx];
 
 	public static int [][] keypad = {{1, 2, 3}, {4, 5, 6}, {7, 8, 9}};
-	
+
 	public static void main(String [] args) {
 		out.println("		2023 Day17.1");
 		out.println("	SLOW ~1minute 45seconds");
@@ -71,13 +71,13 @@ class year2023_day17 {
 		//already = new al_s[leny][lenx];
 		//alreadyBase = new al_s[leny][lenx];
 		/*
-		for (int yy = 0; yy < leny; yy++) {
-			for (int xx = 0; xx < lenx; xx++) {
-				already[yy][xx] = new al_s();
-				alreadyBase[yy][xx] = new al_s();
-			}
-		}
-		*/
+		   for (int yy = 0; yy < leny; yy++) {
+		   for (int xx = 0; xx < lenx; xx++) {
+		   already[yy][xx] = new al_s();
+		   alreadyBase[yy][xx] = new al_s();
+		   }
+		   }
+		   */
 
 		for (int i = 0; i < blah.size();i++) {
 			grid[i] = blah.get(i).toCharArray();
@@ -88,8 +88,8 @@ class year2023_day17 {
 		for (int x=0; x < lenx; x++) {
 			for (int y=0; y < leny; y++) {
 				already[x][y] = new Box();
-		        	//already[x][y].clear();
-    		    	}
+				//already[x][y].clear();
+			}
 		}
 		int sx = 0; int sy = 0;
 		int ex = lenx-1; int ey = leny-1;
@@ -103,22 +103,22 @@ class year2023_day17 {
 			//Arrays.setAll(already, i -> { al_s[] row = new al_s[leny]; Arrays.setAll(row, j -> new al_s()); return row; });
 			//Arrays.setAll(already, i -> { int[] row = new int[cols]; Arrays.setAll(row, j -> i + j); return row; });
 			/*
-			Arrays.parallelSetAll(already, i -> {
-		            int[] row = new int[lenx];
-            			Arrays.parallelSetAll(row, Arrays.stream(j.path).forEach(row -> Arrays.fill(row, 0)));
-            			return row;
-			});
-			*/
+			   Arrays.parallelSetAll(already, i -> {
+			   int[] row = new int[lenx];
+			   Arrays.parallelSetAll(row, Arrays.stream(j.path).forEach(row -> Arrays.fill(row, 0)));
+			   return row;
+			   });
+			   */
 			/*
-			already = new al_s[leny][lenx];
-			for (int yy = 0; yy < leny; yy++) {
-				for (int xx = 0; xx < lenx; xx++) {
-					already[yy][xx] = new al_s();
-				}
-			}
-			*/
+			   already = new al_s[leny][lenx];
+			   for (int yy = 0; yy < leny; yy++) {
+			   for (int xx = 0; xx < lenx; xx++) {
+			   already[yy][xx] = new al_s();
+			   }
+			   }
+			   */
 
-			
+
 			minPath = lenx*leny*9;
 			//already = IntStream.range(0, leny).mapToObj(i -> IntStream.range(0, lenx).map(j -> new al_s()).toArray()).toArray(al_s[][]::new);
 			//Arrays.parallelSetAll(already, i -> { al_s[] row = new al_s[leny]; Arrays.parallelSetAll(row, j -> new al_s()); return row; });
@@ -127,9 +127,9 @@ class year2023_day17 {
 			//already = alreadyBase.clone();
 			//Arrays.stream(already).flatMap(Arrays::stream).forEach(Box::clear);
 			for (int x=0; x < lenx; x++) {
-			    for (int y=0; y < leny; y++) {
-			        already[y][x].clear();
-    				}
+				for (int y=0; y < leny; y++) {
+					already[y][x].clear();
+				}
 			}
 			//Arrays.asList(already).parallelStream() .flatMap(arr -> Arrays.stream(arr)) .forEach(als -> Arrays.setAll(als.path, ix -> { int[] row = als.path[ix]; Arrays.fill(row, 0); return row; }));
 			next(sx, sy, ex, ey, - (grid[sy][sx] - 48), 1, 0);
@@ -141,9 +141,9 @@ class year2023_day17 {
 			//already = alreadyBase.clone();
 			//Arrays.stream(already).flatMap(Arrays::stream).forEach(Box::clear);
 			for (int x=0; x < lenx; x++) {
-			    for (int y=0; y < leny; y++) {
-			        already[y][x].clear();
-    				}
+				for (int y=0; y < leny; y++) {
+					already[y][x].clear();
+				}
 			}
 			next(sx, sy, ex, ey, - (grid[sy][sx] - 48), 2, 0);
 			if (minPath < minmin) {minmin = minPath;}
@@ -196,48 +196,48 @@ class year2023_day17 {
 	public static class al_s {
 		int path[][] = new int[4][5];
 	}
-}
-public final class Box {
+	static class Box {
 
-    private static final int PATH_ROWS = 5;
-    private static final int PATH_COLS = 4;
+		private static final int PATH_ROWS = 5;
+		private static final int PATH_COLS = 4;
 
-    //
+		//
 
-    int[] path;
+		int[] path;
 
-    public Box() {
-        this.path = new int[PATH_ROWS * PATH_COLS];
-    }
+		public Box() {
+			this.path = new int[PATH_ROWS * PATH_COLS];
+		}
 
-    //
+		//
 
-    public int get(int row, int col) {
-        return this.path[this.makeIndex(row, col)];
-    }
+		public int get(int row, int col) {
+			return this.path[this.makeIndex(row, col)];
+		}
 
-    public void set(int row, int col, int value) {
-        this.path[this.makeIndex(row, col)] = value;
-    }
+		public void set(int row, int col, int value) {
+			this.path[this.makeIndex(row, col)] = value;
+		}
 
-    public void clear() {
-        this.clear(0);
-    }
+		public void clear() {
+			this.clear(0);
+		}
 
-    public void clear(int value) {
-        Arrays.fill(this.path, value);
-    }
+		public void clear(int value) {
+			Arrays.fill(this.path, value);
+		}
 
-    private int makeIndex(int row, int col) {
-        if (0 > row || row >= PATH_ROWS)
-            throw new IndexOutOfBoundsException("Row index " + row + " out of bounds");
+		private int makeIndex(int row, int col) {
+			if (0 > row || row >= PATH_ROWS)
+				throw new IndexOutOfBoundsException("Row index " + row + " out of bounds");
 
-        if (0 > col || col >= PATH_COLS)
-            throw new IndexOutOfBoundsException("Column index " + col + " out of bounds");
+			if (0 > col || col >= PATH_COLS)
+				throw new IndexOutOfBoundsException("Column index " + col + " out of bounds");
 
-        return (col * PATH_ROWS) + row;
-    }
+			return (col * PATH_ROWS) + row;
+		}
 
+	}
 }
 
 
