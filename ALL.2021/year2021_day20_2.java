@@ -39,7 +39,7 @@ import java.security.NoSuchAlgorithmException;
 //}
 //// Arrays.stream(array).forEach(row -> Arrays.fill(row, 0));
 @SuppressWarnings("unchecked")
-class year2021_day20 {
+class year2021_day20_2 {
 	static int GX = 500;
 	static int PAD = 200;
 	//	        public static int maxPath = 0;
@@ -55,7 +55,7 @@ class year2021_day20 {
 	public static int [][] keypad = {{1, 2, 3}, {4, 5, 6}, {7, 8, 9}};
 
 	public static void main(String [] args) {
-		out.println("		2021 Day20.1");
+		out.println("		2021 Day20.2");
 		out.flush();
 		Vector<String> blah = new Vector<>();
 		try (BufferedReader br = new BufferedReader(new FileReader(args[0]))) {
