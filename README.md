@@ -11,6 +11,7 @@ o note: a lot of java coding ahead...
 o websearch: Advent of code year 20xy day ab solutions 
    (for many solutions / many days / many years (reddit))
 o have found around 20 bugs in my C/C++ AOC due to coding in Java (a lot are simple like array sizes due to input file differences) - will fix soon	
+o when i get to the end of day25, I will code the ones I left out - more meaty/complicated ones are left, and I want another go at them as time consuming...
 o my 2 cents 
 	-- Java is saving me tons of time with its awesome runtime checks (plus an exact line number of an issue)
 	-- execution time is on a par with c++ (for most things and of course faster in some areas and slower in some)
