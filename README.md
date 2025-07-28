@@ -10,6 +10,7 @@ o these work with my inputfiles -- java code may need to be adjusted slightly fo
 o note: a lot of java coding ahead...
 o websearch: Advent of code year 20xy day ab solutions 
    (for many solutions / many days / many years (reddit))
+o have found around 20 bugs in my C/C++ AOC due to coding in Java (a lot are simple like array sizes due to input file differences) - will fix soon	
 o my 2 cents 
 	-- Java is saving me tons of time with its awesome runtime checks (plus an exact line number of an issue)
 	-- execution time is on a par with c++ (for most things and of course faster in some areas and slower in some)
