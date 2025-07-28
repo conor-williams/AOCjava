@@ -23,6 +23,7 @@ import java.io.*;
 import java.lang.*;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.stream.Collectors;
 
 // /java -Xmx2g year2019_day3.java *i1.txt
 
