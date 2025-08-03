@@ -7,18 +7,18 @@ o cd AOCjava-main
 o set the <b>JAVA paths</b> at the top of FIRST_JAVA.sh
 o sh FIRST_JAVA.sh
 o these work with my inputfiles -- java code may need to be adjusted slightly for your input
-	o email me your input if you are getting an incorrent answer - i will not have seen a condition in your input
+	o email me your input if you are getting an incorrent answer - i will not have seen a condition in your input before
 o note: a lot of java coding ahead...
 o websearch: Advent of code year 20xy day ab solutions 
    (for many solutions / many days / many years (reddit))
-o have found around 20 bugs in my C/C++ AOC due to coding in Java (a lot are simple like array sizes due to input file differences) - will fix soon	
+o have found around 20 bugs in my C/C++ AOC due to coding in Java and a second input file with different conditions (a lot are simple like array sizes due to input file differences) - will fix soon	
 o when i get to the end of day25, I will code the ones I left out - more meaty/complicated ones are left, and I want another go at them as time consuming...
 o my 2 cents 
 	-- Java is saving me tons of time with its awesome runtime checks (plus an exact line number of an issue)
 	-- execution time is on a par with c++ (for most things and of course faster in some areas and slower in some)
 	-- if i was to code the next AOC,25, i will probably write it in Java and then port to C++
 	-- Java has issues with quickly copying 2D/3D arrays/grids etc... even zeroeing 2D/3D grids is
-	     slow..(memset memcpy in C++ is quick) . is vector access a little slower in Java?
+	     slow..(memset memcpy in C++ is quick (but actually not deep copy either)) . is vector access a little slower in Java? (NB: deep copy in the class - assignment deep copy + deep copy constructors)
 </pre>
 <h2>Java solutions to AOC</h2>
 <address><b>first updated 06052025@19:32</b></address><br>
