@@ -46,10 +46,10 @@ year: 2024
  2024 day 17 part 1</s>  |  2024 day 17 part 2
  <s>2024 day 18 part 1  |  2024 day 18 part 2
  2024 day 19 part 1  |  2024 day 19 part 2
- 2024 day 20 part 1  |  2024 day 20 part 2
- 2024 day 21 part 1  |  2024 day 21 part 2</s>
- 2024 day 22 part 1  |  2024 day 22 part 2
- <s>2024 day 23 part 1  |  2024 day 23 part 2</s>
+ 2024 day 20 part 1  |  2024 day 20 part 2</s>
+ 2024 day 21 part 1  |  2024 day 21 part 2
+ <s>2024 day 22 part 1  |  2024 day 22 part 2
+ 2024 day 23 part 1  |  2024 day 23 part 2</s>
  2024 day 24 part 1  |  2024 day 24 part 2
  2024 day 25 part 1  
 year: 2023
@@ -74,7 +74,7 @@ year: 2023
  2023 day 19 part 1 </s> |  2023 day 19 part 2
  2023 day 20 part 1  |  2023 day 20 part 2
  <s>2023 day 21 part 1 </s> |  2023 day 21 part 2
- 2023 day 22 part 1  |  2023 day 22 part 2
+ <s>2023 day 22 part 1 </s> |  2023 day 22 part 2
  <s>2023 day 23 part 1  |  2023 day 23 part 2</s>
  2023 day 24 part 1  |  2023 day 24 part 2
  2023 day 25 part 1  
@@ -93,7 +93,7 @@ year: 2022
  2022 day 12 part 1  |  2022 day 12 part 2</s>
  2022 day 13 part 1  |  2022 day 13 part 2
  2022 day 14 part 1  |  2022 day 14 part 2
- <s>2022 day 15 part 1 </s> |  2022 day 15 part 2
+ <s>2022 day 15 part 1 |  2022 day 15 part 2</s>
  2022 day 16 part 1  |  2022 day 16 part 2
  <s>2022 day 17 part 1  |  2022 day 17 part 2
  2022 day 18 part 1  |  2022 day 18 part 2
@@ -176,9 +176,9 @@ year: 2019
  2019 day 17 part 1  |  2019 day 17 part 2</s>
  2019 day 18 part 1  |  2019 day 18 part 2
  <s>2019 day 19 part 1  |  2019 day 19 part 2
- 2019 day 20 part 1  |  2019 day 20 part 2
- 2019 day 21 part 1  |  2019 day 21 part 2</s>
- 2019 day 22 part 1  |  2019 day 22 part 2
+ 2019 day 20 part 1  |  2019 day 20 part 2</s>
+ 2019 day 21 part 1  |  2019 day 21 part 2
+<s> 2019 day 22 part 1  |  2019 day 22 part 2</s>
  2019 day 23 part 1  |  2019 day 23 part 2
  2019 day 24 part 1  |  2019 day 24 part 2
  2019 day 25 part 1  
@@ -228,10 +228,10 @@ year: 2017
  2017 day 17 part 1  |  2017 day 17 part 2
  2017 day 18 part 1 </s> |  2017 day 18 part 2
  <s>2017 day 19 part 1  |  2017 day 19 part 2
- 2017 day 20 part 1  |  2017 day 20 part 2
- 2017 day 21 part 1  |  2017 day 21 part 2</s>
- 2017 day 22 part 1  |  2017 day 22 part 2
-<s> 2017 day 23 part 1  |  2017 day 23 part 2</s>
+ 2017 day 20 part 1  |  2017 day 20 part 2</s>
+ 2017 day 21 part 1  |  2017 day 21 part 2
+ <s>2017 day 22 part 1  |  2017 day 22 part 2
+  2017 day 23 part 1  |  2017 day 23 part 2</s>
  2017 day 24 part 1  |  2017 day 24 part 2
 <s> 2017 day 25 part 1</s>  
 year: 2016
