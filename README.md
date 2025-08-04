@@ -51,7 +51,7 @@ year: 2024
  <s>2024 day 22 part 1  |  2024 day 22 part 2
  2024 day 23 part 1  |  2024 day 23 part 2</s>
  2024 day 24 part 1  |  2024 day 24 part 2
- 2024 day 25 part 1  
+<s> 2024 day 25 part 1 </s> 
 year: 2023
 <s> 2023 day 1 part 1  |  2023 day 1 part 2
  2023 day 2 part 1  |  2023 day 2 part 2
@@ -102,8 +102,8 @@ year: 2022
  2022 day 21 part 1  |  2022 day 21 part 2
  2022 day 22 part 1 </s> |  2022 day 22 part 2
  <s>2022 day 23 part 1  |  2022 day 23 part 2
- 2022 day 24 part 1  |  2022 day 24 part 2</s>
-<s> 2022 day 25 part 1  </s>
+ 2022 day 24 part 1  |  2022 day 24 part 2
+ 2022 day 25 part 1  </s>
 year: 2021
 <s> 2021 day 1 part 1  |  2021 day 1 part 2
  2021 day 2 part 1  |  2021 day 2 part 2
@@ -129,7 +129,7 @@ year: 2021
  2021 day 22 part 1  |  2021 day 22 part 2</s>
  2021 day 23 part 1  |  2021 day 23 part 2
  2021 day 24 part 1  |  2021 day 24 part 2
- 2021 day 25 part 1  
+<s> 2021 day 25 part 1</s>  
 year: 2020
 <s> 2020 day 1 part 1  |  2020 day 1 part 2
  2020 day 2 part 1  |  2020 day 2 part 2
@@ -154,8 +154,8 @@ year: 2020
  <s>2020 day 21 part 1  |  2020 day 21 part 2
  2020 day 22 part 1  |  2020 day 22 part 2
  2020 day 23 part 1  |  2020 day 23 part 2
- 2020 day 24 part 1  |  2020 day 24 part 2</s>
- 2020 day 25 part 1  
+ 2020 day 24 part 1  |  2020 day 24 part 2
+ 2020 day 25 part 1  </s>
 year: 2019
 <s> 2019 day 1 part 1  |  2019 day 1 part 2
  2019 day 2 part 1  |  2019 day 2 part 2
@@ -207,7 +207,7 @@ year: 2018
  2018 day 22 part 1  |  2018 day 22 part 2
  2018 day 23 part 1  |  2018 day 23 part 2</s>
  2018 day 24 part 1  |  2018 day 24 part 2
- 2018 day 25 part 1  
+ <s>2018 day 25 part 1  </s>
 year: 2017
 <s> 2017 day 1 part 1  |  2017 day 1 part 2
  2017 day 2 part 1  |  2017 day 2 part 2
@@ -258,8 +258,8 @@ year: 2016
  2016 day 21 part 1  |  2016 day 21 part 2
  2016 day 22 part 1 </s> |  2016 day 22 part 2
  <s>2016 day 23 part 1  |  2016 day 23 part 2
- 2016 day 24 part 1  |  2016 day 24 part 2</s>
- 2016 day 25 part 1  
+ 2016 day 24 part 1  |  2016 day 24 part 2
+ 2016 day 25 part 1  </s>
 year: 2015
 <s> 2015 day 1 part 1  |  2015 day 1 part 2
  2015 day 2 part 1  |  2015 day 2 part 2
@@ -309,5 +309,6 @@ year: 2015
 	22 END 31/07/2025
 	23 END 03/08/2025 accnci
 	24 END 04/08/2025 
+	25 END 04/08/2025
 </pre>
 
