@@ -8,7 +8,7 @@ o set the <b>JAVA paths</b> at the top of FIRST_JAVA.sh
 o sh FIRST_JAVA.sh
 o these work with my inputfiles -- java code may need to be adjusted slightly for your input
 	o email me your input if you are getting an incorrent answer - i will not have seen a condition in your input before
-<s>o note: a lot of java coding ahead...</s>
+<s>o note: a lot of java coding ahead...</s> --- around 50 stragglers left -- cw 04/08/2025
 o websearch: Advent of code year 20xy day ab solutions 
    (for many solutions / many days / many years (reddit))
 o have found around 20 bugs in my C/C++ AOC due to coding in Java and a second input file with different conditions (a lot are simple like array sizes due to input file differences) - will fix C/C++ soon	
