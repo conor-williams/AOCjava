@@ -24,6 +24,8 @@ import java.lang.*;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
+
 
 // /java -Xmx2g year2019_day3.java *i1.txt
 
@@ -39,6 +41,7 @@ import java.util.stream.Collectors;
                                 // System.out.println("Key: " + entry.getKey() + ", Value: " + entry.getValue());
 //}
 //// Arrays.stream(array).forEach(row -> Arrays.fill(row, 0));
+///MyClass[] array = IntStream.range(0, 5) .mapToObj(i -> new MyClass()) .toArray(MyClass[]::new);
 @SuppressWarnings("unchecked")
 class year20XY_dayZ {
 //	        public static int maxPath = 0;
