@@ -27,7 +27,7 @@ import java.io.*;
 //Scanner scanner = new Scanner(System.in); scanner.nextLine();
 class year2019_day17 {
 	//public static int [][] keypad = {{1, 2, 3}, {4, 5, 6}, {7, 8, 9}};
-	public static int SZ = 120;
+	public static int SZ = 220;
 	public static char grid[][] = new char[SZ][SZ];
 	public static void main(String [] args) {
 		out.println("		2019 Day17.1");
@@ -41,8 +41,8 @@ class year2019_day17 {
 			e.printStackTrace();
 		}	
 
-		PrintStream originalOut = System.out;
-		System.setOut(new PrintStream(new java.io.OutputStream() { public void write(int b) { } }));
+		///PrintStream originalOut = System.out;
+		//System.setOut(new PrintStream(new java.io.OutputStream() { public void write(int b) { } }));
 		Vector <Long> vi = new Vector<>();
 		for (int i = 0; i < blah.size(); i++) {
 			   Scanner scanner = new Scanner(blah.get(i));
@@ -227,16 +227,17 @@ class year2019_day17 {
 		long tot = 0;
 		for (int yy2 = 1; yy2 < SZ-1; yy2++) {
 			for (int xx2 = 1; xx2 < SZ-1; xx2++) {
-				out.print(grid[yy2][xx2]);
-				if (grid[yy2-1][xx2] == '#' && grid[yy2][xx2+1] == '#' &&
+				//out.print(grid[yy2][xx2]);
+				
+				if (grid[yy2][xx2] == '#' && grid[yy2-1][xx2] == '#' && grid[yy2][xx2+1] == '#' &&
 						grid[yy2+1][xx2] == '#' && grid[yy2][xx2-1] == '#') {
 					tot += yy2*xx2;
 
 				}
 			}
-			out.println();
+			//out.println();
 		}
-		System.setOut(originalOut);
+		//System.setOut(originalOut);
 		out.print("**j_ans: ");
 		out.print(tot);
 		out.println("");
