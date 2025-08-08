@@ -21,9 +21,7 @@ import java.util.Map;
 
 
 class year2019_day3 {
-	public static int sz = 16500;
-	public static int [][] grid = new int[sz][sz];
-	public static int [][] keypad = {{1, 2, 3}, {4, 5, 6}, {7, 8, 9}};
+	static char grid[][];
 	public static void main(String [] args) {
 		out.println("		2019 Day3.1");
 		Vector<String> blah = new Vector<>();
@@ -43,12 +41,52 @@ class year2019_day3 {
 
 		// Vector <Tuple <Integer, String>> ve1 = new Vector<>();
 		//BigInteger tot =  BigInteger.valueOf((long)0);
+		int pX = 0; int pY = 0;
+		int minX = 9999999, minY = 9999999;
+		int maxX = 0, maxY = 0;
+		for (int i = 0; i < blah.size(); i++) {
+			pX = 0; pY = 0;
+			Scanner scanner = new Scanner(blah.get(i));
+			scanner.useDelimiter("[,]");
+			Vector <Integer> var_ints = new Vector<>();
+			while (scanner.hasNext()) {
+				String ne = scanner.next();
+				Matcher m = p.matcher(ne);
+				m.find();
+				char URDL = m.group(1).charAt(0);
+				int val = Integer.valueOf(m.group(2));
+				switch (URDL) {
+					case 'U':
+						pY-=val;
+						break;
+					case 'R':
+						pX+= val;
+						break;
+					case 'D':
+						pY+=val;
+						break;
+					case 'L':
+						pX-=val;
+						break;
+				}
+				if (pX > maxX) {maxX = pX;}
+				if (pX < minX) {minX = pX;}
+				if (pY > maxY) {maxY = pY;}
+				if (pY < minY) {minY = pY;}
+			}
+		}
+		int GRIDX = maxX-minX+30;
+        	int GRIDY = maxY-minY+30;
+        	int STARTX=Math.abs(minX)+15;
+        	int STARTY=Math.abs(minY)+15;
+		grid = new char[GRIDY][GRIDX];
+
 		for (int i = 0; i < blah.size(); i++) {
 			Scanner scanner = new Scanner(blah.get(i));
 			scanner.useDelimiter("[,]");
 			Vector <Integer> var_ints = new Vector<>();
-			int x = sz/2;
-			int y = sz/2;
+			int x = STARTX;
+			int y = STARTY;
 			if (i == 1) {
 				grid[y][x] = 1;
 			} else if (i == 2) {
@@ -127,10 +165,10 @@ class year2019_day3 {
 
 		}
 		int minman = 99999;
-		for (int yy = 0; yy < sz; yy++) {
-			for (int xx = 0; xx < sz; xx++) {
+		for (int yy = 0; yy < GRIDY; yy++) {
+			for (int xx = 0; xx < GRIDX; xx++) {
 				if (grid[yy][xx] == 3) {
-					int man = Math.abs(sz/2-xx) + Math.abs(sz/2-yy);
+					int man = Math.abs(STARTX-xx) + Math.abs(STARTY-yy);
 					if (man < minman) {minman = man;}
 				}
 			}
