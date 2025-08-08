@@ -309,7 +309,8 @@ class year2015_day22_2 {
 		}
 		if (notafford == spellsTot) {}
 		if (notyet == spellsTot) {
-			newGames[newGamesPos] = new game(games[gamesPos]); newGamesPos++;
+			//newGames[newGamesPos] = new game(games[gamesPos]); newGamesPos++;
+			newGames[newGamesPos] = new game(xx); newGamesPos++;
 		}
 	}
 
