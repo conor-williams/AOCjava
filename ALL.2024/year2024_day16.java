@@ -40,9 +40,11 @@ class year2024_day16 {
 	public static int lenx = 0;
 	public static int leny = 0;
 	public static char grid [][] = new char[leny][lenx];
-	public static int already [][] = new int[leny][lenx];
+	public static int sx = -1;
+	public static int sy = -1;
+	public static int ex = -1;
+	public static int ey = -1;
 
-	public static int [][] keypad = {{1, 2, 3}, {4, 5, 6}, {7, 8, 9}};
 	public static void main(String [] args) {
 		out.println("		2024 Day16.1");
 		out.flush();
@@ -60,12 +62,10 @@ class year2024_day16 {
 		//		PrintStream originalOut = System.out;
 		//		System.setOut(new PrintStream(new java.io.OutputStream() { public void write(int b) { } }));
 		grid = new char[leny][lenx];
-		already = new int[leny][lenx];
 		for (int i = 0; i < blah.size();i++) {
 			grid[i] = blah.get(i).toCharArray();
 		}
 
-		int sx = 0, sy = -1, ex = 0, ey = -1;
 after:
 		for (int y = 0; y < leny; y++) {
 			for (int x = 0; x < lenx; x++) {
@@ -81,7 +81,15 @@ after:
 			}
 		}
 
-		next(sx, sy, ex, ey, 0, 1, 1, 0);
+		for (int yy = 1; yy < leny-1; yy++) {
+			for (int xx = 1; xx < lenx-1; xx++) {
+				if ((xx == sx && yy == sy) || (xx == ex && yy == ey)) {
+				} else {
+					deadend(xx, yy);
+				}
+			}
+		}
+		next5(sx, sy, ex, ey);
 
 		//System.setOut(originalOut);
 		out.print("**j_ans: ");
@@ -89,25 +97,103 @@ after:
 		out.println("");
 	}
 
-	public static int next(int x, int y, int ex, int ey, int path, int dir, int prevDir, int steps) {
-		if (Math.abs(prevDir - dir) == 1 || Math.abs(prevDir -dir) == 3) {path += 1000;}
-		if ((x < 0) || (y > (leny-1)) || (y < 0) || (x > (lenx -1))) {return 0;}
-		if (grid[y][x] == '#') {return 0;}
 
-		if (x == ex && y == ey) {
-			if (path < minPath) {minPath = path; }
-			return 0;
+
+	static class Node2 implements Comparable<Node2> {
+		int x, y;
+		int dir;
+		int path;
+
+		Node2(int x, int y, int dir, int path) {
+			this.x = x;
+			this.y = y;
+			this.dir = dir;
+			this.path = path;
 		}
-		if (already[y][x] == 0 || path < already[y][x]) {
-			already[y][x] = path;
-			next(x, y-1, ex, ey, path+1, 0, dir, steps+1);
-			next(x+1, y, ex, ey, path+1, 1, dir, steps+1);
-			next(x, y+1, ex, ey, path+1, 2, dir, steps+1);
-			next(x-1, y, ex, ey, path+1, 3, dir, steps+1);
+		@Override
+		public int compareTo(Node2 other) {
+			return Integer.compare(this.path, other.path);
 		}
-		return 0;
+	};
+
+	static void next5(int x, int y, int ex, int ey) {
+		PriorityQueue<Node2> Q = new PriorityQueue<>();
+
+		Vector<TreTuple<Integer, Integer, Integer>> seen1 = new Vector<>();
+		Q.add(new Node2(x, y, 1, 0));
+
+		while (!Q.isEmpty()) {
+			var current = Q.poll();
+
+			if (seen1.contains(new TreTuple(current.x, current.y, current.dir))) {continue;}
+			seen1.add(new TreTuple(current.x, current.y, current.dir));
+			//out.print(current.x); out.print(" "); out.println(current.y);
+
+			if (current.x == ex && current.y == ey) {
+				/*
+				if (ex == sx && ey == sy && (current.dir == 0 || current.dir == 2)) {
+					current.path += 1000;
+				}
+				out.println("found end.....");
+				*/
+				minPath = current.path;
+				break;
+
+			}
+
+			int ignoreDir = (((current.dir-2) + 4) % 4);
+			for (int i = 0; i < 4; i++) {
+				if (i == ignoreDir) {continue;}
+				int newPath = current.path;
+				if (Math.abs(current.dir - i) == 1 || Math.abs(current.dir -i) == 3) {
+					newPath+=1000;
+				}
+
+				if (i == 0 && grid[current.y-1][current.x] != '#') {
+					Q.add(new Node2(current.x, current.y-1, i, newPath+1));
+				} else if (i == 1 && grid[current.y][current.x+1] != '#') {
+					Q.add(new Node2(current.x+1, current.y, i, newPath+1));
+				} else if (i == 2 && grid[current.y+1][current.x] != '#') {
+					Q.add(new Node2(current.x, current.y+1, i, newPath+1));
+				} else if (i == 3 && grid[current.y][current.x-1] != '#') {
+					Q.add(new Node2(current.x-1, current.y, i, newPath+1));
+				}
+			}
+		}
 	}
 
+	static void deadend(int xx, int yy) {
+		if (grid[yy][xx] == '#') {return;}
+		if ((xx == sx && yy == sy) || (xx == ex && yy == ey)) {return;}
+		Vector <Integer> dirs = new Vector<>();
+		if (grid[yy-1][xx] == '.') {
+			dirs.add(0);
+		}
+		if (grid[yy][xx+1] == '.') {
+			dirs.add(1);
+		}
+		if (grid[yy+1][xx] == '.') {
+			dirs.add(2);
+		}
+		if (grid[yy][xx-1] == '.') {
+			dirs.add(3);
+		}
+		if (dirs.size() == 1) {
+			grid[yy][xx] = '#';
+			if (yy-1 >0) {
+				deadend(xx, yy-1);
+			}
+			if (xx+1 < lenx+1) {
+				deadend(xx+1, yy);
+			}
+			if (yy+1 < leny+1) {
+				deadend(xx, yy+1);
+			}
+			if (xx-1 > 0) {
+				deadend(xx-1, yy);
+			}
+		}
+	}
 }
 
 class Tuple<X,Y > {

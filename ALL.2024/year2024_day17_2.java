@@ -41,13 +41,19 @@ import java.security.NoSuchAlgorithmException;
 @SuppressWarnings("unchecked")
 class year2024_day17_2 {
 	//	        public static int maxPath = 0;
+	static long firstVal = -1;
+	static long secondVal = -1;
+	static long thirdVal = -1;
 	public static int lenx = 0;
 	public static int leny = 0;
 	//  public static char grid [][] = new char[leny][lenx];
 	//    public static int already [][] = new int[leny][lenx];
-	public static long regs[] = new long[4];
+	public static long regs[] = new long[3];
 	public static Vector<inst_s> ops = new Vector<>();
 	public static Vector <Tuple<Long, Long>> ve = new Vector<>();
+	static String theProg = new String();
+	static Vector<Long> thirdV = new Vector<>();
+	static String revProg = new String();
 
 	public static int [][] keypad = {{1, 2, 3}, {4, 5, 6}, {7, 8, 9}};
 	public static void main(String [] args) {
@@ -64,153 +70,220 @@ class year2024_day17_2 {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}	
-		if (false) {
-			//		PrintStream originalOut = System.out;
-			//		System.setOut(new PrintStream(new java.io.OutputStream() { public void write(int b) { } }));
-			/*
-			   grid = new char[leny][lenx];
-			   already = new int[leny][lenx];
-			   for (int i = 0; i < blah.size();i++) {
-			   grid[i] = blah.get(i).toCharArray();
-			   }
-			   */
+		//		PrintStream originalOut = System.out;
+		//		System.setOut(new PrintStream(new java.io.OutputStream() { public void write(int b) { } }));
+		/*
+		   grid = new char[leny][lenx];
+		   already = new int[leny][lenx];
+		   for (int i = 0; i < blah.size();i++) {
+		   grid[i] = blah.get(i).toCharArray();
+		   }
+		   */
 
 
-			//	String firstpart = Pattern.quote("mul(");
-			Pattern p = Pattern.compile("Register ([A-Za-z]): (\\d+)");
-			Pattern p2 = Pattern.compile("Program: ([\\d,]+)");
+		//	String firstpart = Pattern.quote("mul(");
+		Pattern p = Pattern.compile("Register ([A-Za-z]): (\\d+)");
+		Pattern p2 = Pattern.compile("Program: ([\\d,]+)");
 
-			//	Matcher m = p.matcher("17-MAR-11 15.52.25.000000000");
-			//	m.find();
-			//
-			//	month= m.group(2);
+		//	Matcher m = p.matcher("17-MAR-11 15.52.25.000000000");
+		//	m.find();
+		//
+		//	month= m.group(2);
 
-			// Vector <Tuple <Integer, String>> ve1 = new Vector<>();
-			//BigInteger tot =  BigInteger.valueOf((long)0);
-			//BigInteger one =  new BigInteger("1");
-			//BigInteger zero =  new BigInteger("0");
+		// Vector <Tuple <Integer, String>> ve1 = new Vector<>();
+		//BigInteger tot =  BigInteger.valueOf((long)0);
+		//BigInteger one =  new BigInteger("1");
+		//BigInteger zero =  new BigInteger("0");
 
-			for (int i = 0; i < blah.size(); i++) {
-				if (blah.get(i).length() == 0) {
-					continue;
-				} else if (blah.get(i).charAt(0) == 'R') {
-					char reg; long val;
-					Matcher m = p.matcher(blah.get(i));
-					if (m.find()) {
-						reg = m.group(1).charAt(0);
-						val = Long.parseLong(m.group(2));
-						regs[reg-65] = val;
+		theProg = new String();
+		for (int i = 0; i < blah.size(); i++) {
+			if (blah.get(i).length() == 0) {
+				continue;
+			} else if (blah.get(i).charAt(0) == 'R') {
+				char reg; long val;
+				Matcher m = p.matcher(blah.get(i));
+				if (m.find()) {
+					reg = m.group(1).charAt(0);
+					val = Long.parseLong(m.group(2));
+					regs[reg-65] = val;
+				}
+			} else if (blah.get(i).charAt(0) == 'P') {
+				theProg = blah.get(i).substring(blah.get(i).indexOf(" ")+1) + ",";
+				Matcher m2 = p2.matcher(blah.get(i));
+				m2.find();
+				int pos = 0;
+				long oper = 0;
+				long operand = 0;
+				String ne = m2.group(1);
+				Scanner scanner = new Scanner(ne);
+				scanner.useDelimiter("[,]");
+				while (scanner.hasNext()) {
+					if ((pos % 2) == 1) {
+						operand = Long.parseLong(scanner.next());
+						inst_s tmp = new inst_s();
+						tmp.operand = operand;
+						tmp.oper = oper;
+						//ops[pos/2] = new inst_s(tmp);
+						ops.add(tmp);
+						//numInst++;
+					} else {
+						oper = Long.parseLong(scanner.next());
 					}
-				} else if (blah.get(i).charAt(0) == 'P') {
-					Matcher m2 = p2.matcher(blah.get(i));
-					m2.find();
-					int pos = 0;
-					long oper = 0;
-					long operand = 0;
-					String ne = m2.group(1);
-					Scanner scanner = new Scanner(ne);
-					scanner.useDelimiter("[,]");
-					while (scanner.hasNext()) {
-						if ((pos % 2) == 1) {
-							operand = Long.parseLong(scanner.next());
-							inst_s tmp = new inst_s();
-							tmp.operand = operand;
-							tmp.oper = oper;
-							//ops[pos/2] = new inst_s(tmp);
-							ops.add(tmp);
-							//numInst++;
-						} else {
-							oper = Long.parseLong(scanner.next());
-						}
-						pos++;
-					}
+					pos++;
 				}
 			}
-			int inp = 0;
-			String out_var = new String("");
-			String vv = new String("");
-			for (int i = inp; i < ops.size(); i++) {
-				inst_s tmp = ops.get(i);
-				long oper = tmp.oper;
-				long operand = tmp.operand;
-				long comboval = 0;
-				long literalval;
-				literalval = operand;
-				switch ((int)operand) {
-					case 0:
-					case 1:
-					case 2:
-					case 3:
-						comboval = operand;
-						break;
-					case 4:
-						comboval =  regs[0];
-						break;
-					case 5:
-						comboval = regs[1];
-						break;
-					case 6:
-						comboval = regs[2];
-						break;
-					case 7:
-						comboval = 7;
-						break;
-				}
-
-				switch ((int)(oper)) {
-					case 0:
-						//adv
-						regs[0] = (long)(regs[0]/Math.pow(2,comboval));
-						break;
-					case 1:
-						//bxl
-						regs[1] = regs[1]^literalval;
-						break;
-					case 2:
-						//bst
-						regs[1] = comboval % 8;
-						break;
-					case 3:
-						//jnz
-						if (regs[0] == 0) {
-							//nothing
-						} else {
-							i = (int)(literalval-1);
-						}
-						break;
-					case 4:
-						//bxc
-						regs[1] = regs[1] ^ regs[2];
-						break;
-					case 5:
-						//out
-						//printf("%lld,", combovalval%8);
-						//sprintf(out_var, "%s%lld,", out_var, comboval%8);
-						vv = String.valueOf(comboval%8);
-						out_var += vv + ',';
-						break;
-					case 6:
-						//bdv
-						regs[1] = (long)(regs[0]/Math.pow(2,comboval));
-						break;
-					case 7:
-						//cdv
-						regs[2] = (long)(regs[0]/Math.pow(2,comboval));
-						break;
-				}
-			}
-
-
 		}
-		//		System.setOut(originalOut);
+		/*
+		for (int ii = 0; ii < ops.size(); ii++) {
+			out.print(ops.get(ii).oper); out.print(" "); out.println(ops.get(ii).operand);
+		}
+		out.println("--------");
+		*/
+		//Scanner scanner = new Scanner(System.in); scanner.nextLine();
 
+
+		Set<Long> poss = new HashSet<>();
+		out.println(part2(0, 1));
+
+		out.print("117440 yields:"); out.println(machine(117440));
+		//		System.setOut(originalOut);
 		out.print("**j_ans: ");
-		out.print("TODO TODO");
+		//out.print(ans);
 		out.println("");
 	}
+
 	public static class inst_s {
 		long oper;
 		long operand;
+	}
+
+	static long part2(long A, int PP) {
+		Set <Long> result = new HashSet<>();
+		for (int n = 0; n < 8; n++) {
+			long A2 = (A << 3) | n;
+			String output = machine(A2);
+
+			//out.print(output); out.print(" V "); out.println(theProg.substring(theProg.length()-PP*2));
+			if (output.equals(theProg.substring((theProg.length()-(PP*2))))) {
+
+				if (output.equals(theProg)) {
+					result.add(A2);
+					//out.println("gotcha..");
+				} else {
+					long possible = part2(A2, PP+1);
+					/*
+					if (possible == 164278764924605L) {
+						out.println("got it...");
+						Runtime.getRuntime().halt(0);
+					}
+					*/
+					/*
+					if (possible != 0) {
+						result.add(possible);
+					}
+					*/
+				}
+			}
+		}
+		if (result.size() > 0) {
+			out.print("**j_ans: ");
+			out.print(Collections.min(result));
+			out.println();
+			Runtime.getRuntime().halt(0);
+			//return Collections.min(result);
+		} else {
+			return 0;
+		}
+		return 0;
+	}
+	static String machine(long incomingREGSZERO) {
+		String vv = new String("");
+		String out_var = new String("");
+		regs[0] = incomingREGSZERO;
+		regs[1] = 0;
+		regs[2] = 0;
+		long xx = -1, yy = -1, zz = -1;
+
+		for (int i = 0; i < ops.size(); i++) {
+			inst_s tmp = ops.get(i);
+			long oper = tmp.oper;
+			long operand = tmp.operand;
+			long comboval = 0;
+			long literalval;
+			literalval = operand;
+			//out.print("oper: "); out.println(oper);
+
+			switch ((int)operand) {
+				case 0:
+				case 1:
+				case 2:
+				case 3:
+					comboval = operand;
+					break;
+				case 4:
+					comboval =  regs[0];
+					break;
+				case 5:
+					comboval = regs[1];
+					break;
+				case 6:
+					comboval = regs[2];
+					break;
+				case 7:
+					comboval = 7;
+					break;
+				default:
+					out.println("not here?...");
+					Runtime.getRuntime().halt(0);
+			}
+
+			switch ((int)(oper)) {
+				case 0:
+					//adv
+					//xx = (int)((regs[0]/(long)Math.pow(2,comboval))%Integer.MAX_VALUE);
+					xx = (regs[0]/(long)Math.pow(2,comboval));// & 0xFFFFFFFF;
+					regs[0] = xx;
+					break;
+				case 1:
+					//bxl
+					regs[1] = regs[1]^literalval;
+					break;
+				case 2:
+					//bst
+					regs[1] = comboval % 8;
+					break;
+				case 3:
+					//jnz
+					if (regs[0] == 0) {
+						//nothing
+					} else {
+						i = (int)(literalval-1);
+					}
+					break;
+				case 4:
+					//bxc
+					regs[1] = regs[1] ^ regs[2];
+					break;
+				case 5:
+					//comboval = comboval%8;
+					vv = String.valueOf(comboval%8);
+					out_var +=  vv + ',';
+				//	out.println(out_var);
+
+					break;
+				case 6:
+					//bdv
+					yy = (regs[0]/(long)Math.pow(2,comboval));// & 0xFFFFFFFF;
+					regs[1] = yy;
+					break;
+				case 7:
+					//cdv
+					zz = (regs[0]/(long)Math.pow(2,comboval));// & 0xFFFFFFFF;
+					regs[2] = zz;
+					break;
+			}
+		}
+		return out_var;
 	}
 }
 
