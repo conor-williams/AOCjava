@@ -21,40 +21,41 @@ import java.util.Map;
 import java.util.*;
 import java.io.*;
 import java.lang.*;
-// /java -Xmx2g year2019_day3.java *i1.txt
 
+//thanks nebble_longbottom @ reddit
 
-//                        grid = Arrays.stream(gridTmp).map(char[]::clone).toArray(char[][]::new);
-// pe.sort(Comparator.comparingInt((TreTuple t) -> (int)t.third).thenComparingInt((TreTuple t) -> (int)t.second).thenComparingInt((TreTuple t) -> (int)t.first));///tuples.sort(Comparator.comparingInt(tuple -> tuple[0]));
-//Scanner scanner = new Scanner(System.in); scanner.nextLine();
-// int max = var_ints.stream().max(Integer::compare).orElseThrow();
-// int position = var_ints.indexOf(max);
-
-//                        for (var entry : mp.entrySet()) {
-// System.out.println("Key: " + entry.getKey() + ", Value: " + entry.getValue());
-//}
-// Arrays.stream(array).forEach(row -> Arrays.fill(row, 0));
 @SuppressWarnings("unchecked")
 class year2024_day16_2 {
-	public static int minPath = Integer.MAX_VALUE;
-	public static int minSteps = Integer.MAX_VALUE;
-	public static int lenx = 0;
-	public static int leny = 0;
-	public static char grid [][] = new char[leny][lenx];
-	public static int already [][] = new int[leny][lenx];
-	public static int minOrig = Integer.MAX_VALUE;
+	static Vector<Tuple<Integer, Integer>> dirs = new Vector<>();
+	static class Node {
+		int x;
+		int y;
+		int dir;
 
-	public static int startx = 0;
-	public static int starty = 0;
-	public static int [][] keypad = {{1, 2, 3}, {4, 5, 6}, {7, 8, 9}};
-	public static Set <Tuple <Integer, Integer>> se = new HashSet<>();
-	public static int sx = 0;
-	public static int sy = -1;
-	public static int ex = 0;
-       	public static int ey = -1;
+		Node(int x, int y, int dir) {
+			this.x = x;
+			this.y = y;
+			this.dir = dir;
+		}
+		@Override
+		public boolean equals(Object obj) {
+			Node xx = (Node)obj;
+			return xx.x == this.x && xx.y == this.y && xx.dir == this.dir;
+		}
+		@Override
+		public int hashCode() {
+			return Objects.hash(x, y, dir);
+		}
+	}
+	static int ex = -1;
+	static int ey = -1;
+	static int sx = -1;
+	static int sy = -1;
+	static int lenx = 0;
+	static int leny = 1;
+	static char[][] grid = new char[leny][lenx];
 	public static void main(String [] args) {
 		out.println("		2024 Day16.2");
-		out.println("	SLOW ~5minutes 30seconds");
 		out.flush();
 		Vector<String> blah = new Vector<>();
 		try (BufferedReader br = new BufferedReader(new FileReader(args[0]))) {
@@ -67,15 +68,19 @@ class year2024_day16_2 {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}	
-		PrintStream originalOut = System.out;
-		System.setOut(new PrintStream(new java.io.OutputStream() { public void write(int b) { } }));
+		dirs.add(new Tuple(-1, 0));
+		dirs.add(new Tuple(0, 1));
+		dirs.add(new Tuple(1, 0));
+		dirs.add(new Tuple(0, -1));
+
+		//PrintStream originalOut = System.out;
+		//System.setOut(new PrintStream(new java.io.OutputStream() { public void write(int b) { } }));
+
 		grid = new char[leny][lenx];
-		already = new int[leny][lenx];
 		for (int i = 0; i < blah.size();i++) {
 			grid[i] = blah.get(i).toCharArray();
 		}
 
-		//int sx = 0, sy = -1, ex = 0, ey = -1;
 after:
 		for (int y = 0; y < leny; y++) {
 			for (int x = 0; x < lenx; x++) {
@@ -90,8 +95,6 @@ after:
 				}
 			}
 		}
-		startx = sx;
-		starty = sy;
 
 		for (int yy = 1; yy < leny-1; yy++) {
 			for (int xx = 1; xx < lenx-1; xx++) {
@@ -102,71 +105,199 @@ after:
 			}
 		}
 
-		out.println("after deadend sealing");
-		next(sx, sy, ex, ey, 0, 1, 1, 0);
-		out.println(minPath);
-		out.println(minSteps);
-		Vector <Tuple <Integer, Integer>> ve = new Vector<>();
-		already = new int[leny][lenx];
-		minOrig = minPath;
-		next2(sx, sy, ex, ey, 0, 1, 1, 0, ve);
-		//Arrays.stream(already).forEach(row -> Arrays.fill(row, 0));
+		/*
+		   for (int yy = 0; yy < leny; yy++) {
+		   for (int xx = 0; xx < lenx; xx++) {
+		   out.print(grid[yy][xx]);
+		   }
+		   out.println();
+		   }
+		   */
+
+		var p2 = solve();
+		//System.setOut(originalOut);
+		out.print("**j_ans: ");
+		out.print(p2.second);
+		out.println("");
+	}
+	static Tuple <Map<Node, Map<Node, Integer>>, Map<Node, Map<Node, Integer>>> make_graph() {
+		Map<Node, Map<Node, Integer>> graph = new HashMap<>();
+		Map<Node, Map<Node, Integer>> rgraph = new HashMap<>();
+
+		Node start_node = new Node(sx, sy, 1);
+		Vector<Node> nodes_stack = new Vector<>();
+		nodes_stack.add(start_node);
 
 		int count = 0;
-		for (int yy = 1; yy < leny-1; yy++) {
-			for (int xx = 1; xx < lenx-1; xx++) {
-				if (grid[yy][xx] == '#') {
-					continue;
-				}
-				if (se.contains(new Tuple(xx, yy)) ) {
-					continue;
-				}
-				//Arrays.stream(already).forEach(row -> Arrays.fill(row, 0));
-				Vector <Integer> dirs = new Vector<>();
+		int cdar[] = {1,-1};
+		while (nodes_stack.size() != 0) {
+			var node = nodes_stack.lastElement();
+			nodes_stack.remove(nodes_stack.size()-1);
 
-				if (grid[yy-1][xx] == '.') {
-					dirs.add(0);
-				} 
-				if (grid[yy][xx+1] == '.') {
-					dirs.add(1);
-				} 
-				if (grid[yy+1][xx] == '.') {
-					dirs.add(2);
-				} 
-				if (grid[yy][xx-1] == '.') {
-					dirs.add(3);
+			if (graph.containsKey(node)) {
+				continue;
+			}
+			int c = node.x;
+			int r = node.y;
+			int d = node.dir;
+
+			for (int cd: cdar) {
+				int dd = ((d+cd)+4) % 4;
+				int dr = dirs.get(dd).first;
+				int dc = dirs.get(dd).second;
+
+				//if (r+dr > leny-1 || r+dr < 0 || c+dc > lenx-1 || c+dc < 0) {continue;}
+				if (grid[r+dr][c+dc] != '#') {
+					Node new_node = new Node(c, r, dd);
+					graph.putIfAbsent(node, new HashMap());
+					graph.get(node).put(new_node, 1000);
+					rgraph.putIfAbsent(new_node, new HashMap());
+					rgraph.get(new_node).put(node, 1000);
+					if (!graph.containsKey(new_node)) {
+						nodes_stack.add(new_node);
+					}
 				}
-				//if (dirs.size() == 1) {out.println("dead end"); continue;}
-				var dirsOrig = new Vector(dirs);
+			}
+			int dr10 = dirs.get(d).first;
+			int dc10 = dirs.get(d).second;
+
+			if (grid[r+dr10][c+dc10] == '#') {
+				continue;
+			}
+			int rr = r+dr10;
+			int cc = c+dc10;
+			int last_d = d;
+			int dist = 1;
+			while (true) {
 				count++;
-				do {
-					doit(xx, yy, sx, sy, 0, dirs.get(0), dirs.get(0)); 
-					int one = minPath;
+				Vector<TreTuple<Integer, Integer, Integer>> valid_moves = new Vector<>();
+				int backwards_dir = ((last_d)+2) %4;
+				for (int di2 = 0; di2 < 4; di2++) {
+					if (backwards_dir == di2) {continue;}
+					int dr2 = dirs.get(di2).first;
+					int dc2 = dirs.get(di2).second;
 
-					doit(xx, yy, ex, ey, 0, dirs.get(1), dirs.get(1));
-					one += minPath;
-					int dirsdiff = Math.abs(dirs.get(0) - dirs.get(1));
-					if (dirsdiff == 1 || dirsdiff == 3) {
-						one+=1000;
+					if (grid[rr+dr2][cc+dc2] != '#') {
+						valid_moves.add(new TreTuple(di2, dc2, dr2));
 					}
-					if (one == minOrig) {
-						se.add(new Tuple(xx, yy));
-						if (dirs.size() == 2) {
-							checkit2(dirs.get(0), dirs.get(1), xx, yy);
+				}
+				if (valid_moves.size() == 0) {
+					break;
+				} else if (valid_moves.size() == 1) {
+					int di = valid_moves.get(0).first;
+					int dc = valid_moves.get(0).second;
+					int dr = valid_moves.get(0).third;
+
+					rr+= dr;
+					cc+= dc;
+					dist++;
+
+					if (rr == ey && cc == ex) {
+						Node new_node = new Node(cc, rr, last_d);
+						graph.putIfAbsent(node, new HashMap<>());
+						graph.get(node).put(new_node, dist);
+						rgraph.putIfAbsent(new_node, new HashMap<>());
+						rgraph.get(new_node).put(node, dist);
+
+						if (!graph.containsKey(new_node)) {
+							nodes_stack.add(new_node);
 						}
-						break;
+					} else {
+						dist += (di == last_d) ? 0 : 1000;
+						last_d = di;
 					}
-					nextPermutation(dirs);
-				} while (!dirs.equals(dirsOrig));
+				} else if (valid_moves.size() > 1) {
+					Node new_node = new Node(cc, rr, last_d);
+					graph.putIfAbsent(node, new HashMap<>());
+					graph.get(node).put(new_node, dist);
+					rgraph.putIfAbsent(new_node, new HashMap<>());
+					rgraph.get(new_node).put(node, dist);
+
+					if (!graph.containsKey(new_node)) {
+						nodes_stack.add(new_node);
+					}
+					break;
+				}
+			}
+		}
+		return new Tuple(graph, rgraph);
+	}
+
+	static Tuple <Integer, Integer> solve() {
+		var pa = make_graph();
+		Map<Node, Map<Node, Integer>> graph = pa.first;
+		Map<Node, Map<Node, Integer>> rgraph = pa.second;
+
+		PriorityQueue< TupleSpecial<Integer, Node>> heap = new PriorityQueue<>();
+
+		Map <Node, Integer> dists = new HashMap<>();
+
+		Node no = new Node(sx, sy, 1);
+		heap.add(new TupleSpecial(0, no)); 
+
+		int p1 = 0;
+		Node end_node = new Node(ex, ey, 0);
+		while (!heap.isEmpty()) {
+			var xx = heap.poll();
+			int dist = xx.first;
+			Node node = xx.second;
+
+			if (dists.containsKey(node)) {
+				continue;
+			}
+			dists.put(node, dist);
+			int c = node.x;
+			int r = node.y;
+			int d = node.dir;
+
+			if (r == ey && c == ex) {
+				p1 = dist;
+				end_node = new Node(ex, ey, d);
+				break;
+			}
+
+			var pa1 = graph.get(node);
+			for (var no1: pa1.entrySet()) {
+				Node adjacent = no1.getKey();
+				int weight = no1.getValue();
+				int new_dist = dist+weight;
+				heap.add(new TupleSpecial(new_dist, adjacent));
 			}
 		}
 
-		out.print("searched: "); out.println(count);
-		System.setOut(originalOut);
-		out.print("**j_ans: ");
-		out.print(se.size());
-		out.println("");
-	}
+		int p2 = 0;
+		Vector <Node> nodes = new Vector<>();
+		nodes.add(end_node);
+
+		Set <Node> seen = new HashSet<>();
+		int count = 0;
+
+		while (!nodes.isEmpty()) {
+			count++;
+			Node node = nodes.lastElement();
+			nodes.remove(nodes.size()-1);
+
+			if (seen.contains(node)) { continue; }
+			seen.add(node);
+			p2+=1;
+
+			if (rgraph.get(node) != null) {
+				var pa1 = rgraph.get(node);
+				for (var no2 : pa1.entrySet()) {
+					Node adjacent = no2.getKey();
+					int weight = no2.getValue();
+
+					if (dists.containsKey(adjacent) && dists.get(adjacent) + graph.get(adjacent).get(node) == dists.get(node)) {
+						nodes.add(adjacent);
+						p2+= (graph.get(adjacent).get(node) % 1000) -1;
+					}
+				}
+			}
+		}
+		return new Tuple(p1, p2);
+	}	
+
+
 	public static void deadend(int xx, int yy) {
 		if (grid[yy][xx] == '#') {return;}
 		if ((xx == sx && yy == sy) || (xx == ex && yy == ey)) {return;}
@@ -199,360 +330,40 @@ after:
 			}
 		}
 	}
-	public static void nextPermutation(Vector <Integer> nums) {
-		int i = nums.size() - 2;
-		while (i >= 0 && nums.get(i) >= nums.get(i + 1)) {
-			i--;
-		}
-		if (i >= 0) {
-			int j = nums.size() - 1;
-			while (j >= 0 && nums.get(j) <= nums.get(i)) {
-				j--;
-			}
-			swap(nums, i, j);
-		}
-		reverse(nums, i + 1);
-	}
-
-        private static void swap(Vector <Integer> nums, int i, int j) {
-                int temp = nums.get(i);
-                nums.set(i, nums.get(j));
-                nums.set(j, temp);
-        }
-
-        private static void reverse(Vector <Integer> nums, int start) {
-                int end = nums.size() - 1;
-                while (start < end) {
-                        swap(nums, start, end);
-                        start++;
-                        end--;
-                }
-        }
-
-	public static void checkit2(int dir1, int dir2, int xx, int yy) {
-		if (Math.abs(dir1 - dir2) == 2) {
-			if (dir1 == 1 || dir2 == 3) {
-				/*
-				for (int xx2 = xx-1; xx2 > 0; xx2--) {
-					if (checkit(xx2, yy) == 0) {
-						break;
-					}
-				}
-				*/
-
-				for (int xx2 = xx+1; xx2 < lenx-1; xx2++) {
-					if (checkit(xx2, yy) == 0) {
-						break;
-					}
-				}
-			} else if (dir1 == 0 || dir1 == 2) {
-				/*
-				for (int yy2 = yy-1; yy2 > 0; yy2--) {
-					if (checkit(xx, yy2) == 0) {
-						break;
-					}
-				}
-				*/
-				for (int yy2 = yy+1; yy2 < leny-1; yy2++) {
-					if (checkit(xx, yy2) == 0) {
-						break;
-					}
-				}
-			}
-
-		}
-	}
-	public static int checkit(int xx, int yy) {
-		if (grid[yy][xx] == '#') {
-			return 0;
-		}
-		Vector <Integer> dirs2 = new Vector<>();
-		if (grid[yy-1][xx] == '.') {
-			dirs2.add(0);
-		} 
-		if (grid[yy][xx+1] == '.') {
-			dirs2.add(1);
-		} 
-		if (grid[yy+1][xx] == '.') {
-			dirs2.add(2);
-		} 
-		if (grid[yy][xx-1] == '.') {
-			dirs2.add(3);
-		}
-		if (dirs2.size() > 2) {
-			return 0;
-		}
-		se.add(new Tuple(xx, yy));
-		return 1;
-	}
-	static class dirs {
-		int north;
-		int south;
-		int east;
-		int west;
-	}
-
-	static class Node implements Comparable<Node> {
-		int x, y;
-		int path;
-		int dir;
-		Node parent;
-
-		Node(int x, int y, int path, int dir, Node parent) {
-			this.x = x;
-			this.y = y;
-			this.path = path;
-			this.dir = dir;
-			this.parent = parent;
-		}
-		@Override
-		public int compareTo(Node other) {
-			return Integer.compare(this.path, other.path);
-		}
-
-	}
-	private static boolean isValid(int x, int y) {
-		return x >= 0 && y >= 0 && x < lenx && y < leny;
-	}
-
-	public static void findAllPathsBFS(int[] start, int[] end) {
-		List<List<int[]>> allPaths = new ArrayList<>();
-		int rows = grid.length, cols = grid[0].length;
-		boolean[][] visited = new boolean[rows][cols];
-		///Queue<Node> queue = new LinkedList<>();
-		PriorityQueue<Node> queue = new PriorityQueue<>();
-
-		queue.add(new Node(start[0], start[1], 0, 1, null));
-		//queue.add(new Node(start[0], start[1], new ArrayList<>(), grid[0][0]-48));
-		visited[start[1]][start[0]] = true;
-
-		int[][] directions = {{0, 1}, {1, 0}, {0, -1}, {-1, 0}}; // right, down, left, up
-
-		while (!queue.isEmpty()) {
-			Node current = queue.poll();
-
-			if (current.x == end[0] && current.y == end[1]) {
-				int path = current.path;
-				out.println("end reached...");
-				out.print(path); out.print(" V "); out.println(minPath);
-				if (path == minPath) {out.println("got an end with minPath"); }
-				continue;
-			}
-
-			visited[current.y][current.x] = true;
-			for (int[] dir : directions) {
-				int newX = current.x + dir[0];
-				int newY = current.y + dir[1];
-				if (grid[newY][newX] == '#') {continue;}
-				int path = current.path;
-				int dirdir = 0;
-				if (dir[0] == 0 && dir[1] == 1) {
-					dirdir = 2;
-				} else if (dir[0] == 1 && dir[1] == 0) {
-					dirdir = 1;
-				} else if (dir[0] == 0 && dir[1] == -1) {
-					dirdir = 0;
-				} else if (dir[0] == -1 && dir[1] == 0) {
-					dirdir = 3;
-				}
-
-				if (isValid(newX, newY)) {// && !visited[newY][newX]) 
-					if (Math.abs(dirdir - current.dir) == 1 || Math.abs(dirdir - current.dir) == 3) {path += 1000;}
-					//int risk = current.risk + (grid[newY][newX] - '0');
-					if (path < minPath) {
-						queue.add(new Node(newX, newY, path+1, dirdir, current));
-					}
-				}
-
-
-			}
-		}
-	}
-
-	public static void findAllPathsAStarred(int[] start, int[] end) {
-		PriorityQueue<Node> openSet = new PriorityQueue<>();
-		boolean[][] closedSet = new boolean[grid.length][grid[0].length];
-
-		openSet.add(new Node(start[0], start[1], 0, 1, null));
-		//openSet.add(new Node(start[0], start[1], 0, null));
-
-		while (!openSet.isEmpty()) {
-			Node current = openSet.poll();
-
-			if (current.x == end[0] && current.y == end[1]) {
-
-				int path = current.path;
-				out.println("end reached...");
-				out.print(path); out.print(" V "); out.println(minPath);
-				if (path == minPath) {out.println("got an end with minPath"); }
-
-				continue; // Continue to find other paths
-			}
-
-			//closedSet[current.y][current.x] = true;
-
-			for (int[] dir : new int[][]{{0, 1}, {1, 0}, {0, -1}, {-1, 0}}) {
-				int newX = current.x + dir[0];
-				int newY = current.y + dir[1];
-				if (grid[newY][newX] == '#') {continue;}
-				int path = current.path;
-				int dirdir = 0;
-				if (dir[0] == 0 && dir[1] == 1) {
-					dirdir = 2;
-				} else if (dir[0] == 1 && dir[1] == 0) {
-					dirdir = 1;
-				} else if (dir[0] == 0 && dir[1] == -1) {
-					dirdir = 0;
-				} else if (dir[0] == -1 && dir[1] == 0) {
-					dirdir = 3;
-				}
-
-
-				if (isValid(newX, newY)/* && !closedSet[newY][newX]*/) {
-					if (Math.abs(dirdir - current.dir) == 1 || Math.abs(dirdir - current.dir) == 3) {path += 1000;}
-					//int risk = current.risk + (grid[newY][newX] - '0');
-					if (path < minPath) {
-						openSet.add(new Node(newX, newY, path+1, dirdir, current));
-					}
-				}
-			}
-
-		}
-	}
-	public static int next4(int x, int y, int ex, int ey, int path, int dir, int prevDir) {
-		if (path > minOrig) {return 0;}
-		if (path > minPath) {return 0;}
-		if (Math.abs(prevDir - dir) == 1 || Math.abs(prevDir -dir) == 3) {path += 1000;}
-		if ((x < 1) || (y > (leny-2)) || (y < 1) || (x > (lenx -2))) {return 0;}
-		if (grid[y][x] == '#') {return 0;}
-
-		if (x == ex && y == ey) {
-			if (ex == startx && ey == starty && (dir == 0 || dir == 2)) {
-				path += 1000;
-			}
-
-			if (path < minPath) {minPath = path; }
-			return 0;
-		}
-		if (already[y][x] == 0 || path < already[y][x]) {
-			already[y][x] = path;
-			next4(x, y-1, ex, ey, path+1, 0, dir);
-			next4(x+1, y, ex, ey, path+1, 1, dir);
-			next4(x, y+1, ex, ey, path+1, 2, dir);
-			next4(x-1, y, ex, ey, path+1, 3, dir);
-		}
-		return 0;
-	}
-	public static int next3(int x, int y, int ex, int ey, int path, int dir, int prevDir, int steps, Vector <Tuple<Integer, Integer>> ve) {
-		//if (steps > minSteps) {return 0;}
-		if (path > minPath) {return 0;}
-		if (path > minOrig) {return 0;}
-		if (Math.abs(prevDir - dir) == 1 || Math.abs(prevDir -dir) == 3) {path += 1000;}
-		if ((x < 0) || (y > (leny-1)) || (y < 0) || (x > (lenx -1))) {return 0;}
-		if (grid[y][x] == '#') {return 0;}
-
-		if (x == ex && y == ey) {
-			if (path == minPath) {
-				out.println("end reached is minPath");
-
-				for (int ii = 0; ii < ve.size(); ii++) {
-					var pa = ve.get(ii);
-					se.add(new Tuple(pa.first, pa.second));
-				}
-				se.add(new Tuple(x, y));
-				//out.println(se.size());
-				//se.clear();
-			}
-			return 0;
-		}
-		if (already[y][x] == 0 || path < already[y][x]) {// steps <= already[y][x]) 
-								 //already[y][x] = steps;
-			already[y][x] = path;
-			Vector <Tuple <Integer, Integer>> ve1 = new Vector(ve);
-			Vector <Tuple <Integer, Integer>> ve2 = new Vector(ve);
-			Vector <Tuple <Integer, Integer>> ve3 = new Vector(ve);
-			Vector <Tuple <Integer, Integer>> ve4 = new Vector(ve);
-			ve1.add(new Tuple(x, y));
-			ve2.add(new Tuple(x, y));
-			ve3.add(new Tuple(x, y));
-			ve4.add(new Tuple(x, y));
-			next3(x, y-1, ex, ey, path+1, 0, dir, steps+1, ve1);
-			next3(x+1, y, ex, ey, path+1, 1, dir, steps+1, ve2);
-			next3(x, y+1, ex, ey, path+1, 2, dir, steps+1, ve3);
-			next3(x-1, y, ex, ey, path+1, 3, dir, steps+1, ve4);
-		}
-		return 0;
-	}
-	public static void doit(int x, int y, int ex, int ey, int path, int dir, int prevDir) {
-		minPath = 999999;
-		Arrays.stream(already).forEach(row -> Arrays.fill(row, 0));
-		next4(x, y, ex, ey, 0, prevDir, dir); 
-	}
-	public static int next2(int x, int y, int ex, int ey, int path, int dir, int prevDir, int steps, Vector <Tuple<Integer, Integer>> ve) {
-		//if (steps > minSteps) {return 0;}
-		if (path > minPath) {return 0;}
-		if (path > minOrig) {return 0;}
-		if (Math.abs(prevDir - dir) == 1 || Math.abs(prevDir -dir) == 3) {path += 1000;}
-		if ((x < 0) || (y > (leny-1)) || (y < 0) || (x > (lenx -1))) {return 0;}
-		if (grid[y][x] == '#') {return 0;}
-
-		if (x == ex && y == ey) {
-			if (path == minPath) {
-				out.println("end reached is minPath");
-
-				for (int ii = 0; ii < ve.size(); ii++) {
-					var pa = ve.get(ii);
-					se.add(new Tuple(pa.first, pa.second));
-				}
-				se.add(new Tuple(x, y));
-				//out.println(se.size());
-				//se.clear();
-			}
-			return 0;
-		}
-		if (already[y][x] == 0 || path < already[y][x]) {// steps <= already[y][x]) 
-								 //already[y][x] = steps;
-			already[y][x] = path;
-			Vector <Tuple <Integer, Integer>> ve1 = new Vector(ve);
-			Vector <Tuple <Integer, Integer>> ve2 = new Vector(ve);
-			Vector <Tuple <Integer, Integer>> ve3 = new Vector(ve);
-			Vector <Tuple <Integer, Integer>> ve4 = new Vector(ve);
-			ve1.add(new Tuple(x, y));
-			ve2.add(new Tuple(x, y));
-			ve3.add(new Tuple(x, y));
-			ve4.add(new Tuple(x, y));
-			next2(x, y-1, ex, ey, path+1, 0, dir, steps+1, ve1);
-			next2(x+1, y, ex, ey, path+1, 1, dir, steps+1, ve2);
-			next2(x, y+1, ex, ey, path+1, 2, dir, steps+1, ve3);
-			next2(x-1, y, ex, ey, path+1, 3, dir, steps+1, ve4);
-		}
-		return 0;
-	}
-
-	public static int next(int x, int y, int ex, int ey, int path, int dir, int prevDir, int steps) {
-		if (path > minPath) {return 0;}
-		if (path > minOrig) {return 0;}
-		if (Math.abs(prevDir - dir) == 1 || Math.abs(prevDir -dir) == 3) {path += 1000;}
-		if ((x < 0) || (y > (leny-1)) || (y < 0) || (x > (lenx -1))) {return 0;}
-		if (grid[y][x] == '#') {return 0;}
-
-		if (x == ex && y == ey) {
-			if (path < minPath) {minPath = path; minSteps = steps; /*out.println("one"); out.println(minPath);*/}
-			return 0;
-		}
-		if (already[y][x] == 0 || path < already[y][x]) {
-			already[y][x] = path;
-			next(x, y-1, ex, ey, path+1, 0, dir, steps+1);
-			next(x+1, y, ex, ey, path+1, 1, dir, steps+1);
-			next(x, y+1, ex, ey, path+1, 2, dir, steps+1);
-			next(x-1, y, ex, ey, path+1, 3, dir, steps+1);
-		}
-		return 0;
-	}
 
 
 }
 
+class TupleSpecial<X,Y > implements Comparable <TupleSpecial> {
+	public X first;
+	public Y second;
+
+	public TupleSpecial(X first, Y second) {
+		this.first = first;
+		this.second = second;
+	}
+	@Override
+	public boolean equals(Object o) {
+		TupleSpecial tu2 = (TupleSpecial) o;
+		if (this == o) return true;
+		if (!(o instanceof TupleSpecial)) return false;
+		if (!this.first.equals(tu2.first)) {return false;}
+		if (!this.second.equals(tu2.second)) {return false;}
+
+		return true;
+	}
+	@Override
+	public int hashCode() {
+		return Objects.hash(first, second);
+	}
+	@Override
+	public int compareTo(TupleSpecial other) {
+		//return Integer.compare(this.risk, other.risk);
+		TupleSpecial ot = (TupleSpecial)other;
+		return Integer.compare((Integer)this.first, (Integer)ot.first);
+	}
+
+}
 class Tuple<X,Y > {
 	public X first;
 	public Y second;
