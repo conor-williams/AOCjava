@@ -67,8 +67,8 @@ class year2025_day11 {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}	
-//		PrintStream originalOut = System.out;
-//		System.setOut(new PrintStream(new java.io.OutputStream() { public void write(int b) { } }));
+		PrintStream originalOut = System.out;
+		System.setOut(new PrintStream(new java.io.OutputStream() { public void write(int b) { } }));
                 /*
                 grid = new char[leny][lenx];
                 already = new int[leny][lenx];
@@ -107,7 +107,7 @@ class year2025_day11 {
 		*/
 		
 		//out.println(mp.size());
-//		System.setOut(originalOut);
+		System.setOut(originalOut);
 		out.print("**j_ans: ");
 		out.print(numPaths);
 		out.println("");
