@@ -26,6 +26,7 @@ o my 2 cents
 
 <h3>New todos to finish</h3>
 <pre>
+year: 2025 - all - uploaded - 20/01/2026 
 year: 2024
 <s> 2024 day 1 part 1  |  2024 day 1 part 2
  2024 day 2 part 1  |  2024 day 2 part 2
