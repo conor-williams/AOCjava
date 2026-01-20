@@ -17,8 +17,8 @@ fi
 
 	
 ### a guide to running...
-echo "tar of input-2015-2014.tar.gz takes ~10seconds"
-tar -xvzf input-2015-2024.tar.gz
+echo "tar of input-2015-2030.tar.gz takes ~10seconds"
+tar -xvzf input-2015-2030.tar.gz
 
 echo "sh specialCopy.sh takes ~1minute"
 sh specialCopy.sh

@@ -2,7 +2,7 @@ set -xv
 year=2015
 day=1
 
-while [ $year != 2025 ] ; do
+while [ $year != 2030 ] ; do
 	while [ $day != 26 ] ; do
 		if [ -f ALL.$year/year${year}_day${day}.java ]; then
 			cp ALL.$year/year${year}_day${day}.java $year/day$day/

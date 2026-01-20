@@ -25,6 +25,7 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
+import java.util.Comparator;
 
 
 // /java -Xmx2g year2019_day3.java *i1.txt
@@ -87,7 +88,7 @@ class year20XY_dayZ {
 		//BigInteger tot =  BigInteger.valueOf((long)0);
 		//BigInteger one =  new BigInteger("1");
 		//BigInteger zero =  new BigInteger("0");
-		for (int i = 0; i < blah.size(); i++) {
+		for (int i = 0, nn = blah.size(); i < nn; i++) {
 			/*
 			   Scanner scanner = new Scanner(blah.get(i));
 			   scanner.useDelimiter("[\t\\s ]");

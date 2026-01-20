@@ -6,7 +6,7 @@ day=1
 year=2015
 curdir=$PWD
 echo $curdir
-while [ $year != 2025 ];  do
+while [ $year != 2030 ];  do
 	while [ $day != 26 ]; do
 		if [ -d $curdir/$year/day$day ]; then
 			cd $curdir/$year/day$day
