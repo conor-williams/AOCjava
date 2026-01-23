@@ -60,7 +60,6 @@ class year2025_day10_2 {
 	public static Map<String, Integer> alreadyScores;
 	public static void main(String [] args) {
 		out.println("		2025 Day10.2");
-		out.println("	SLOW ~30seconds");
 		out.flush();
 		Vector<String> blah = new Vector<>();
 		try (BufferedReader br = new BufferedReader(new FileReader(args[0]))) {
@@ -174,6 +173,7 @@ class year2025_day10_2 {
 			//long start = System.nanoTime();
 			already = new HashMap();
 			alreadyScores = new HashMap();
+			solveAll(ve, jo.size());
 			minScore = outsideSolve(jo, ve);
 			if (minScore > 9999) {
 				out.println("**************** ERR " + ii);
@@ -254,10 +254,20 @@ class year2025_day10_2 {
 				poss1.add(xx3.get(kkk).clone());
 			}
 		} else {
+			return 99999;
+			/*
+			out.println("looking for: " + toget);
+			out.println("oops Err");
+			solve(toget, ve);
+			out.println("solve: " + possibles.size());
+			Runtime.getRuntime().halt(0);
+			*/
+			/*
 			solve(toget, ve);
 			for (int kkk = 0, n22 = possibles.size(); kkk < n22; kkk++) {
 				poss1.add(possibles.get(kkk).clone());
 			}
+			*/
 		}
 		/*
 		solve(toget, ve);
@@ -368,14 +378,8 @@ class year2025_day10_2 {
 		return true;
 	}
 
-	static void solve(String toget, Vector<Vector<Integer>> ve) {
-		String lightsStart = ".".repeat(toget.length());
-		/*
-		if (already.containsKey(toget)) {
-			possibles.add(already.get(toget));
-			return;
-		}
-		*/
+	static void solveAll(Vector<Vector<Integer>> ve, int sz) {
+		String lightsStart = ".".repeat(sz);
 
 		int len = ve.size();
 		for (int end = 0; end <= len; end++) {
@@ -409,6 +413,60 @@ class year2025_day10_2 {
 
 					}
 				}
+				//possibles.add(arr.clone());
+				String got = li.toString();
+				if (already.get(got) == null) {
+					Vector <int[]> oneAdd = new Vector<>();
+					oneAdd.add(arr.clone());
+					already.put(got, oneAdd);
+				} else {
+					Vector <int[]> oldAdd = new Vector<>(already.get(got));
+					oldAdd.add(arr.clone());
+					already.put(got, oldAdd);
+				}
+
+			} while (nextPermutation(arr) && !Arrays.equals(arr, arrOrig));
+		}
+		return;
+
+	}
+	static void solve(String toget, Vector<Vector<Integer>> ve) {
+		String lightsStart = ".".repeat(toget.length());
+
+		int len = ve.size();
+		for (int end = 0; end <= len; end++) {
+			int arr[] = new int[len];
+			for (int i = 0; i < end; i++) {
+				arr[i] = 1;
+			}
+			for (int i = end; i < len; i++) {	
+				arr[i] = 0;
+			}
+			Arrays.sort(arr);
+			int arrOrig[] = new int[len];
+			arrOrig = Arrays.copyOf(arr, len);
+
+			do {
+				//out.println(Arrays.toString(arr) + " end: " + end + " len: " + len);
+				StringBuffer li = new StringBuffer(lightsStart);
+				for (int i = 0; i < len; i++) {
+					if (arr[i] == 1) {
+						//press its buttons
+						//out.println("press button: " + i);
+						var ins = ve.get(i);
+						for (int kk = 0, n3 = ins.size(); kk < n3; kk++) {
+							int qq = ins.get(kk);
+							if (li.charAt(qq) == '.') {
+								li.setCharAt(qq, '#');
+							} else {
+								li.setCharAt(qq, '.');
+							}
+						}
+
+					}
+				}
+				//possibles.add(arr.clone());
+
 				//out.println("-----");
 				if (toget.equals(li.toString())) {
 					//out.println("***got 1...");
@@ -416,7 +474,7 @@ class year2025_day10_2 {
 				}
 			} while (nextPermutation(arr) && !Arrays.equals(arr, arrOrig));
 		}
-		already.put(toget, (Vector<int[]>)possibles.clone());
+		//already.put(toget, (Vector<int[]>)possibles.clone());
 		return;
 
 	}
