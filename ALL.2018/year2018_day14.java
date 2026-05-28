@@ -1,7 +1,7 @@
 import java.io.*;
 import java.util.*;
 
-public class year2018_day14_2 {
+public class year2018_day14 {
 
     public static void main(String[] args) throws Exception {
         BufferedReader br = new BufferedReader(new FileReader(args[0]));
